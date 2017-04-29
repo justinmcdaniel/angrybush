@@ -10,8 +10,6 @@ public class GridTile : MonoBehaviour {
 
 	public MouseGridController mouseController;
 
-	public GameObject character = null;
-
 	// Use this for initialization
 	void Awake () {
 		mouseController = (MouseGridController)GameObject.Find("Main Camera").GetComponent (typeof(MouseGridController));

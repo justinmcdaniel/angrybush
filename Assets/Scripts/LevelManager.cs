@@ -80,10 +80,7 @@ public class LevelManager : MonoBehaviour {
 			x = -1;
 			y = 0;
 			do {
-				GameObject leftGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
-				if (((GridTile)leftGrid.GetComponent (typeof(GridTile))).character) {
-					leftCharacter = ((GridTile)leftGrid.GetComponent (typeof(GridTile))).character;
-				}
+				leftCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
 				x--;
 			} while (leftCharacter.tag == "Pollution" && (gridX+x) >= 0);
 
@@ -93,10 +90,7 @@ public class LevelManager : MonoBehaviour {
 				x = 1;
 				y = 0;
 				do {
-					GameObject rightGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
-					if (((GridTile)rightGrid.GetComponent (typeof(GridTile))).character) {
-						rightCharacter = ((GridTile)rightGrid.GetComponent (typeof(GridTile))).character;
-					}
+					rightCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
 					x++;
 				} while (rightCharacter.tag == "Pollution" && (gridX+x) <= 7);
 
@@ -113,10 +107,7 @@ public class LevelManager : MonoBehaviour {
 			x = 0;
 			y = -1;
 			do {
-				GameObject topGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
-				if (((GridTile)topGrid.GetComponent (typeof(GridTile))).character) {
-					topCharacter = ((GridTile)topGrid.GetComponent (typeof(GridTile))).character;
-				}
+				topCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
 				y--;
 			} while (topCharacter.tag == "Pollution" && (gridY+y) >= 0);
 
@@ -126,10 +117,7 @@ public class LevelManager : MonoBehaviour {
 				x = 0;
 				y = 1;
 				do {
-					GameObject bottomGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
-					if (((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character) {
-						bottomCharacter = ((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character;
-					}
+					bottomCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
 					y++;
 				} while (bottomCharacter.tag == "Pollution" && (gridX+y) <= 7);
 
