@@ -3,16 +3,18 @@ using System.Collections;
 
 public class GridTile : MonoBehaviour {
 
+	public bool isCurrentTile;
+
 	public int gridX;
 	public int gridY;
 
-	public MouseController mouseController;
+	public MouseGridController mouseController;
 
 	public GameObject character = null;
 
 	// Use this for initialization
 	void Awake () {
-		mouseController = (MouseController)GameObject.Find ("Main Camera").GetComponent (typeof(MouseController));
+		mouseController = (MouseGridController)GameObject.Find("Main Camera").GetComponent (typeof(MouseGridController));
 	}
 	
 	// Update is called once per frame
@@ -21,21 +23,20 @@ public class GridTile : MonoBehaviour {
 	}
 
 	void OnMouseEnter() {
-		mouseController.gridX = this.gridX;
-		mouseController.gridY = this.gridY;
-		Debug.Log ("X: " + this.gridX + ", Y: " + this.gridY);
+		isCurrentTile = true;
+		mouseController.mouseEnter (this.gridX, this.gridY);
 	}
 	void OnMouseExit() {
-		mouseController.gridX = -1;
-		mouseController.gridY = -1;
+		isCurrentTile = false;
+		mouseController.mouseExit ();
 	}
 
 	//Move to character
 	void OnMouseUp() {
-		mouseController.mouseIsDown = false;
+		mouseController.mouseUp ();
 	}
 
 	void OnMouseDown() {
-		mouseController.mouseIsDown = true;
+		mouseController.mouseDown ();
 	}
 }

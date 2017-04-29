@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
 
@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour {
 	public Stage currentStage;
 
 	public Dictionary <string, int> plantPositions;
-	public GameManager gameManager;
 
 	[Serializable]
 	public struct Position {
@@ -24,7 +23,11 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-		gameManager = (GameManager)GameObject.Find ("GameManager").GetComponent (typeof(GameManager));
+		plantPositions = new Dictionary<string, int> () { };
+
+		foreach (Position position in plantStartingPositions) {
+			plantPositions [position.key] = position.value;
+		}
 
 		InitLevel ();
 
@@ -44,23 +47,11 @@ public class LevelManager : MonoBehaviour {
 		// load plants
 		// load pollutions
 
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-	}
-
-	public GameObject getCharacterAtGridPosition (int gridX, int gridY) {
-		string targetKey = gridX.ToString () + gridY.ToString ();
-		if (this.plantPositions.ContainsKey (targetKey)) {
-			int plantListPosition = this.plantPositions [targetKey];
-			return gameManager.plants [plantListPosition];
-		} else if (this.currentStage.pollutions.ContainsKey (targetKey)) {
-			return this.currentStage.pollutions [targetKey];
-		} else {
-			return null;
-		}
 
 	}
 
@@ -93,26 +84,37 @@ public class LevelManager : MonoBehaviour {
 				x = 1;
 				y = 0;
 				do {
+					Debug.Log("X: " + x);
+					Debug.Log("Y: " + y);
 					GameObject rightGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
 					if (((GridTile)rightGrid.GetComponent (typeof(GridTile))).character) {
 						rightCharacter = ((GridTile)rightGrid.GetComponent (typeof(GridTile))).character;
 					}
 					x++;
+					if (rightCharacter != null) {
+						Debug.Log("Right: " + rightCharacter.tag);
+					}
+					else {
+						Debug.Log("Right: Null");
+					}
 				} while (rightCharacter.tag == "Pollution" && (gridX+x) <= 7);
 
 				if (rightCharacter.tag == "Plant") {
 					Plant plantRight = ((Plant)rightCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantRight.DoDamage ());
+					damage += plantRight.DoDamage ();
 					Plant plantLeft = ((Plant)leftCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantLeft.DoDamage ());
+					damage += plantLeft.DoDamage ();
 				}
 			}
-						
+
+			/*
 			// Up
 			GameObject topCharacter = null;
 			x = 0;
 			y = -1;
 			do {
+				Debug.Log("X: " + x);
+				Debug.Log("Y: " + y);
 				GameObject topGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
 				if (((GridTile)topGrid.GetComponent (typeof(GridTile))).character) {
 					topCharacter = ((GridTile)topGrid.GetComponent (typeof(GridTile))).character;
@@ -126,6 +128,8 @@ public class LevelManager : MonoBehaviour {
 				x = 0;
 				y = 1;
 				do {
+					Debug.Log("X: " + x);
+					Debug.Log("Y: " + y);
 					GameObject bottomGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
 					if (((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character) {
 						bottomCharacter = ((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character;
@@ -134,12 +138,11 @@ public class LevelManager : MonoBehaviour {
 				} while (bottomCharacter.tag == "Pollution" && (gridX+y) <= 7);
 
 				if (bottomCharacter.tag == "Plant") {
-					Plant plantTop = ((Plant)topCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantTop.DoDamage ());
-					Plant plantBottom = ((Plant)bottomCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantBottom.DoDamage ());
+					// Do damage
 				}
 			}
+			*/	
+			pollution.TakeDamage (damage);
 		}
 	}
 

@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour {
 		}
 
 	}
+	
 
 	public void Combat() {
 		Debug.Log ("Combat Initiated");
@@ -93,26 +94,37 @@ public class LevelManager : MonoBehaviour {
 				x = 1;
 				y = 0;
 				do {
+					Debug.Log("X: " + x);
+					Debug.Log("Y: " + y);
 					GameObject rightGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
 					if (((GridTile)rightGrid.GetComponent (typeof(GridTile))).character) {
 						rightCharacter = ((GridTile)rightGrid.GetComponent (typeof(GridTile))).character;
 					}
 					x++;
+					if (rightCharacter != null) {
+						Debug.Log("Right: " + rightCharacter.tag);
+					}
+					else {
+						Debug.Log("Right: Null");
+					}
 				} while (rightCharacter.tag == "Pollution" && (gridX+x) <= 7);
 
 				if (rightCharacter.tag == "Plant") {
 					Plant plantRight = ((Plant)rightCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantRight.DoDamage ());
+					damage += plantRight.DoDamage ();
 					Plant plantLeft = ((Plant)leftCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantLeft.DoDamage ());
+					damage += plantLeft.DoDamage ();
 				}
 			}
-						
+
+			/*
 			// Up
 			GameObject topCharacter = null;
 			x = 0;
 			y = -1;
 			do {
+				Debug.Log("X: " + x);
+				Debug.Log("Y: " + y);
 				GameObject topGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
 				if (((GridTile)topGrid.GetComponent (typeof(GridTile))).character) {
 					topCharacter = ((GridTile)topGrid.GetComponent (typeof(GridTile))).character;
@@ -126,6 +138,8 @@ public class LevelManager : MonoBehaviour {
 				x = 0;
 				y = 1;
 				do {
+					Debug.Log("X: " + x);
+					Debug.Log("Y: " + y);
 					GameObject bottomGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
 					if (((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character) {
 						bottomCharacter = ((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character;
@@ -134,12 +148,11 @@ public class LevelManager : MonoBehaviour {
 				} while (bottomCharacter.tag == "Pollution" && (gridX+y) <= 7);
 
 				if (bottomCharacter.tag == "Plant") {
-					Plant plantTop = ((Plant)topCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantTop.DoDamage ());
-					Plant plantBottom = ((Plant)bottomCharacter.GetComponent (typeof(Plant)));
-					pollution.TakeDamage(plantBottom.DoDamage ());
+					// Do damage
 				}
 			}
+			*/	
+			pollution.TakeDamage (damage);
 		}
 	}
 

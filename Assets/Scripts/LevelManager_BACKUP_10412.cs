@@ -51,6 +51,15 @@ public class LevelManager : MonoBehaviour {
 
 	}
 
+<<<<<<< HEAD
+	void getAdjacentCharacter(string position) {
+		if (currentStage.pollutions.ContainsKey (position)) {
+
+		} else {
+
+		}
+	}
+=======
 	public GameObject getCharacterAtGridPosition (int gridX, int gridY) {
 		string targetKey = gridX.ToString () + gridY.ToString ();
 		if (this.plantPositions.ContainsKey (targetKey)) {
@@ -63,6 +72,8 @@ public class LevelManager : MonoBehaviour {
 		}
 
 	}
+	
+>>>>>>> origin/master
 
 	public void Combat() {
 		Debug.Log ("Combat Initiated");
