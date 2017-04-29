@@ -80,9 +80,10 @@ public class Pollution : MonoBehaviour {
 	void Death() {
 		isDead = true;
 
-		anim.SetTrigger ("Die");
+		//anim.SetTrigger ("Die");
 
 		//playerAudio.clip = deathClip;
 		//playerAudio.Play ();
+		Object.Destroy(gameObject);
 	}
 }
