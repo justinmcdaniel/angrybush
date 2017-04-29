@@ -767,12 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stages: []
   currentStage: {fileID: 0}
-  pairs:
-  - 00:0
-  - 01:1
-  - 02:2
-  - 03:3
-  - 04:4
+  plantStartingPositions: []
 --- !u!1 &327177803
 GameObject:
   m_ObjectHideFlags: 0
