@@ -2,13 +2,18 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Plant_Stats : MonoBehaviour {
+public class Plant : MonoBehaviour {
+
+	public int id;
 
 	public int health;
 	public int strength;
 	public int defense;
 	public int magic;
 	public int magicDefense;
+
+	public int x;
+	public int y;
 
 	public int currentHealth;
 	public Slider healthSlider;
