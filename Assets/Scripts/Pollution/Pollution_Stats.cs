@@ -2,9 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Plant_Health : MonoBehaviour {
+public class Pollution_Stats : MonoBehaviour {
 
-	public int startingHealth = 100;
+	public int health;
+	public int strength;
+	public int defense;
+	public int magic;
+	public int magicDefense;
+
 	public int currentHealth;
 	public Slider healthSlider;
 	public Image damageImage;
@@ -22,9 +27,9 @@ public class Plant_Health : MonoBehaviour {
 	void Awake () {
 		anim = GetComponent <Animator> ();
 		//playerAudio = GetComponent <AudioSource> ();
-		currentHealth = startingHealth;
+		currentHealth = health;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (isDamaged) {
