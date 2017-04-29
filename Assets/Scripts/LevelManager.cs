@@ -10,18 +10,23 @@ public class LevelManager : MonoBehaviour {
 
 	public Dictionary <string, int> plantPositions;
 
-	public List<string> pairs;
+	[Serializable]
+	public struct Position {
+		public string key;
+		public int value;
+	}
 
-	public List<GameObject> plants;
+	public List<Position> plantStartingPositions;
+
+	List<GameObject> plants;
 
 	// Use this for initialization
 	void Awake () {
 
 		plantPositions = new Dictionary<string, int> () { };
 
-		foreach (string str in pairs) {
-			String[] parts = str.Split (':');
-			plantPositions [parts [0]] = Convert.ToInt32( parts [1]);
+		foreach (Position position in plantStartingPositions) {
+			plantPositions [position.key] = position.value;
 		}
 
 		InitLevel ();
@@ -55,9 +60,7 @@ public class LevelManager : MonoBehaviour {
 		foreach (KeyValuePair<string, GameObject> pollutionObject in currentStage.pollutions) {
 			int damage = 0;
 			Pollution pollution = ((Pollution) pollutionObject.Value.GetComponent (typeof(Pollution)));
-			Debug.Log ("Pollution Id: " + pollution.id);
-			Debug.Log ("Pollution X: " + pollution.x);
-			Debug.Log ("Pollution Y: " + pollution.y);
+
 			int gridX = pollution.x; 
 			int gridY = pollution.y;
 			int x;
