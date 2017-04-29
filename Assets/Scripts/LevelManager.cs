@@ -19,14 +19,12 @@ public class LevelManager : MonoBehaviour {
 
 	public List<Position> plantStartingPositions;
 
-	List<GameObject> plants;
+	List<GameObject> plants { get { return gameManager.plants; } }
 
 	// Use this for initialization
 	void Awake () {
 
 		gameManager = (GameManager)GameObject.Find ("GameManager").GetComponent (typeof(GameManager));
-
-		InitLevel ();
 
 		//Assumes gameObject is "Main Camera"
 		stages = gameObject.GetComponents<Stage>();
@@ -37,7 +35,15 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 
-		plants = ((GameManager)GameObject.Find ("GameManager").GetComponent (typeof(GameManager))).plants;
+
+		plantPositions = new Dictionary<string, int> ();
+		foreach (Position plantPos in plantStartingPositions) {
+			plantPositions.Add (plantPos.key, plantPos.value);
+		}
+	}
+
+	void Start() {
+		InitLevel ();
 	}
 
 	void InitLevel() {

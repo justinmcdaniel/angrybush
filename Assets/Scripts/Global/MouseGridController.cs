@@ -36,6 +36,7 @@ public class MouseGridController : MonoBehaviour {
 	public void mouseEnter(int gridX, int gridY) {
 		this.gridX = gridX;
 		this.gridY = gridY;
+		Debug.Log ("X: " + this.gridX + ", Y: " + this.gridY);
 	}
 
 	public void mouseExit() {
