@@ -5,7 +5,7 @@ public class Skill : MonoBehaviour {
 
 	public string skillName;
 	public int damage;
-	public EnumDamageType.DamageType damageType;
+	public Enumerations.DamageType damageType;
 
 	// Use this for initialization
 	void Start () {

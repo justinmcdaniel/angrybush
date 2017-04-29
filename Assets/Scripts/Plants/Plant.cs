@@ -57,10 +57,10 @@ public class Plant : MonoBehaviour {
 		Skill skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
 
 		int damage = 0;
-		if (skill.damageType == EnumDamageType.DamageType.Magic) {
+		if (skill.damageType == Enumerations.DamageType.Magic) {
 			damage = skill.damage * (magic / stats.baseMagic);
 		}
-		else if (skill.damageType == EnumDamageType.DamageType.Physical) {
+		else if (skill.damageType == Enumerations.DamageType.Physical) {
 			damage = skill.damage * (strength / stats.baseStrength);
 		}
 		return damage;
@@ -68,10 +68,10 @@ public class Plant : MonoBehaviour {
 
 	public void TakeDamage (int amount, Skill skill) {
 		int damage = 0;
-		if (skill.damageType == EnumDamageType.DamageType.Magic) {
+		if (skill.damageType == Enumerations.DamageType.Magic) {
 			damage = amount * (stats.baseMagicDefense / magicDefense);
 		}
-		else if (skill.damageType == EnumDamageType.DamageType.Physical) {
+		else if (skill.damageType == Enumerations.DamageType.Physical) {
 			damage = amount * (stats.baseDefence / defense);
 		}
 

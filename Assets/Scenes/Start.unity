@@ -133,6 +133,46 @@ Prefab:
       propertyPath: m_Name
       value: angry_cactus
       objectReference: {fileID: 0}
+    - target: {fileID: 117882, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 139362, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150146, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 150596, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 116154, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21206584, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_SortingLayerID
+      value: -397517121
+      objectReference: {fileID: 0}
+    - target: {fileID: 21287312, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_SortingLayerID
+      value: -397517121
+      objectReference: {fileID: 0}
+    - target: {fileID: 21241846, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_SortingLayerID
+      value: -397517121
+      objectReference: {fileID: 0}
+    - target: {fileID: 21266020, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_SortingLayerID
+      value: -397517121
+      objectReference: {fileID: 0}
+    - target: {fileID: 21216402, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_SortingLayerID
+      value: -397517121
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
   m_IsPrefabParent: 0

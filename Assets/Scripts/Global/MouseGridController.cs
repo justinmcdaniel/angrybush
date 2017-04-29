@@ -37,11 +37,16 @@ public class MouseGridController : MonoBehaviour {
 		this.gridX = gridX;
 		this.gridY = gridY;
 		Debug.Log ("X: " + this.gridX + ", Y: " + this.gridY);
+
+		if (this.mouseIsDown && this.currentCharacter != null) {
+			GameObject targetGrid = GameObject.Find ("grid_tile_" + this.gridX.ToString() + this.gridY.ToString());
+			this.currentCharacter.transform.position = targetGrid.transform.position;
+
+		}
 	}
 
 	public void mouseExit() {
-
-
+		
 		this.gridX = -1;
 		this.gridY = -1;
 
@@ -58,6 +63,11 @@ public class MouseGridController : MonoBehaviour {
 	public void mouseDown() {
 		this.mouseIsDown = true;
 		this.currentCharacter = levelManager.getCharacterAtGridPosition (this.gridX, this.gridY);
+		if (this.currentCharacter != null) {
+			Debug.Log (((Skill)this.currentCharacter.GetComponent (typeof(Skill))).damage.ToString ());
+		} else {
+			Debug.Log ("no char here");
+		}
 
 		//todo: call character picked up here
 	}

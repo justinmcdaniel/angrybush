@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
 
 	public Dictionary <string, int> plantPositions;
 	GameManager gameManager;
-
+		
 	[Serializable]
 	public struct Position {
 		public string key;
@@ -38,6 +38,10 @@ public class LevelManager : MonoBehaviour {
 
 		plantPositions = new Dictionary<string, int> ();
 		foreach (Position plantPos in plantStartingPositions) {
+			GameObject targetGrid = GameObject.Find ("grid_tile_" + plantPos.key);
+			GameObject plant = gameManager.plants [plantPos.value];
+			plant.SetActive (true);
+			plant.transform.position = targetGrid.transform.position;
 			plantPositions.Add (plantPos.key, plantPos.value);
 		}
 	}
@@ -62,12 +66,24 @@ public class LevelManager : MonoBehaviour {
 		if (this.plantPositions.ContainsKey (targetKey)) {
 			int plantListPosition = this.plantPositions [targetKey];
 			return gameManager.plants [plantListPosition];
-		} else if (this.currentStage.pollutions.ContainsKey (targetKey)) {
+		} else if (this.currentStage.pollutions != null && this.currentStage.pollutions.ContainsKey (targetKey)) {
 			return this.currentStage.pollutions [targetKey];
 		} else {
 			return null;
 		}
+	}
 
+
+
+	public Enumerations.MoveType getMoveTypeToGridPosition (int targetGridX, int targetGridY, int sourceGridX, int sourceGridY, GameObject sourceCharacter) {
+		GameObject targetCharacter = this.getCharacterAtGridPosition (targetGridX, targetGridY);
+		if (targetCharacter == null) {
+			return Enumerations.MoveType.Free;
+		} else if (targetCharacter.tag == targetCharacter.tag) {
+			return Enumerations.MoveType.Swap;
+		} else {
+			return Enumerations.MoveType.Blocked;
+		}
 	}
 
 	public void Combat() {
