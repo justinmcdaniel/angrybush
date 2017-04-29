@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
 		InitLevel ();
 
 		//Assumes gameObject is "Main Camera"
-		stages = (Stage[])gameObject.GetComponents(typeof(Stage));
+		stages = gameObject.GetComponents<Stage>();
 		foreach (Stage stage in stages) {
 			if (stage.activeStage) {
 				currentStage = stage;
