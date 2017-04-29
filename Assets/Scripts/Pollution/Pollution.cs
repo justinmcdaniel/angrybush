@@ -28,11 +28,19 @@ public class Pollution : MonoBehaviour {
 	bool isDead;
 	bool isDamaged;
 
+	GameObject globalStats;
+	Stats stats;
+
+	Skill skill;
+
 	// Use this for initialization
 	void Awake () {
-		anim = GetComponent <Animator> ();
-		//playerAudio = GetComponent <AudioSource> ();
+		globalStats = GameObject.Find ("globalStats");
+		stats = (Stats)globalStats.GetComponent (typeof(Stats));
+
 		currentHealth = health;
+
+		skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
 	}
 
 	// Update is called once per frame
@@ -47,10 +55,18 @@ public class Pollution : MonoBehaviour {
 	}
 	*/
 
-	public void TakeDamage (int amount) {
+	public void TakeDamage (int amount, EnumDamageType.DamageType damageType) {
+		int damage = 0;
+		if (damageType == EnumDamageType.DamageType.Magic) {
+			damage = amount * (stats.baseMagicDefense / magicDefense);
+		}
+		else if (damageType == EnumDamageType.DamageType.Physical) {
+			damage = amount * (stats.baseDefence / defense);
+		}
+
 		isDamaged = true;
 
-		currentHealth -= amount;
+		currentHealth -= damage;
 
 		//healthSlider.value = currentHealth;
 
