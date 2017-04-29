@@ -53,8 +53,8 @@ public class LevelManager : MonoBehaviour {
 
 	public GameObject getCharacterAtGridPosition (int gridX, int gridY) {
 		string targetKey = gridX.ToString () + gridY.ToString ();
-		if (this.currentStage.plantPositions.ContainsKey (targetKey)) {
-			int plantListPosition = this.currentStage.plantPositions [targetKey];
+		if (this.plantPositions.ContainsKey (targetKey)) {
+			int plantListPosition = this.plantPositions [targetKey];
 			return gameManager.plants [plantListPosition];
 		} else if (this.currentStage.pollutions.ContainsKey (targetKey)) {
 			return this.currentStage.pollutions [targetKey];
