@@ -35,8 +35,97 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void Combat() {
-		foreach (GameObject pollution in pollutions) {
-			
+		Debug.Log ("Combat Initiated");
+		foreach (GameObject pollutionObject in pollutions) {
+			int damage = 0;
+			Pollution pollution = ((Pollution) pollutionObject.GetComponent (typeof(Pollution)));
+			Debug.Log ("Pollution Id: " + pollution.id);
+			Debug.Log ("Pollution X: " + pollution.x);
+			Debug.Log ("Pollution Y: " + pollution.y);
+			int gridX = pollution.x; 
+			int gridY = pollution.y;
+			int x;
+			int y;
+
+			// Left
+			GameObject leftCharacter = null;
+			x = -1;
+			y = 0;
+			do {
+				Debug.Log("X: " + x);
+				Debug.Log("Y: " + y);
+				GameObject leftGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
+				if (((GridTile)leftGrid.GetComponent (typeof(GridTile))).character) {
+					leftCharacter = ((GridTile)leftGrid.GetComponent (typeof(GridTile))).character;
+				}
+				x--;
+			} while (leftCharacter.tag == "Pollution" && (gridX+x) >= 0);
+
+			// Right
+			if (leftCharacter.tag == "Plant") {
+				GameObject rightCharacter = null;
+				x = 1;
+				y = 0;
+				do {
+					Debug.Log("X: " + x);
+					Debug.Log("Y: " + y);
+					GameObject rightGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
+					if (((GridTile)rightGrid.GetComponent (typeof(GridTile))).character) {
+						rightCharacter = ((GridTile)rightGrid.GetComponent (typeof(GridTile))).character;
+					}
+					x++;
+					if (rightCharacter != null) {
+						Debug.Log("Right: " + rightCharacter.tag);
+					}
+					else {
+						Debug.Log("Right: Null");
+					}
+				} while (rightCharacter.tag == "Pollution" && (gridX+x) <= 7);
+
+				if (rightCharacter.tag == "Plant") {
+					Plant plantRight = ((Plant)rightCharacter.GetComponent (typeof(Plant)));
+					damage += plantRight.DoDamage ();
+					Plant plantLeft = ((Plant)leftCharacter.GetComponent (typeof(Plant)));
+					damage += plantLeft.DoDamage ();
+				}
+			}
+
+			/*
+			// Up
+			GameObject topCharacter = null;
+			x = 0;
+			y = -1;
+			do {
+				Debug.Log("X: " + x);
+				Debug.Log("Y: " + y);
+				GameObject topGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
+				if (((GridTile)topGrid.GetComponent (typeof(GridTile))).character) {
+					topCharacter = ((GridTile)topGrid.GetComponent (typeof(GridTile))).character;
+				}
+				y--;
+			} while (topCharacter.tag == "Pollution" && (gridY+y) >= 0);
+
+			// Down
+			if (topCharacter.tag == "Plant") {
+				GameObject bottomCharacter = null;
+				x = 0;
+				y = 1;
+				do {
+					Debug.Log("X: " + x);
+					Debug.Log("Y: " + y);
+					GameObject bottomGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
+					if (((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character) {
+						bottomCharacter = ((GridTile)bottomGrid.GetComponent (typeof(GridTile))).character;
+					}
+					y++;
+				} while (bottomCharacter.tag == "Pollution" && (gridX+y) <= 7);
+
+				if (bottomCharacter.tag == "Plant") {
+					// Do damage
+				}
+			}
+			*/	
+			pollution.TakeDamage (damage);
 		}
 	}
 
@@ -51,6 +140,7 @@ public class GameManager : MonoBehaviour {
 			// end = true;
 
 		} while (end);
+		//updateBoard ();
 	}
 
 	void AIMove() {

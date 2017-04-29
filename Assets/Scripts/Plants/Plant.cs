@@ -42,16 +42,20 @@ public class Plant : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+	/*
 	void Update () {
 		if (isDamaged) {
-			damageImage.color = flashColor;
+			//damageImage.color = flashColor;
 		} else {
-			damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+			//damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 		}
 		isDamaged = false;
 	}
+	*/
 
-	public int DoDamage (Skill skill) {
+	public int DoDamage () {
+		Skill skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
+
 		int damage = 0;
 		if (skill.damageType == EnumDamageType.DamageType.Magic) {
 			damage = skill.damage * (magic / stats.baseMagic);

@@ -147,6 +147,7 @@ MonoBehaviour:
   gridX: 0
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &31528439
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -235,6 +236,7 @@ MonoBehaviour:
   gridX: 3
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &84324836
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -352,6 +354,7 @@ MonoBehaviour:
   gridX: 1
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &105948655
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -440,6 +443,7 @@ MonoBehaviour:
   gridX: 4
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &116417541
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -528,6 +532,7 @@ MonoBehaviour:
   gridX: 6
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &138753614
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -616,6 +621,7 @@ MonoBehaviour:
   gridX: 4
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &263123231
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -802,6 +808,7 @@ MonoBehaviour:
   gridX: 3
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &327177807
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -890,6 +897,7 @@ MonoBehaviour:
   gridX: 1
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &361116468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -920,6 +928,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &385355405 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 195846, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+  m_PrefabInternal: {fileID: 1309507493}
 --- !u!1 &389681283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1138,7 @@ MonoBehaviour:
   gridX: 7
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &441887966
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1214,6 +1227,7 @@ MonoBehaviour:
   gridX: 6
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &441924120
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1302,6 +1316,7 @@ MonoBehaviour:
   gridX: 0
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &470580976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1390,6 +1405,7 @@ MonoBehaviour:
   gridX: 7
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &498885976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1478,6 +1494,7 @@ MonoBehaviour:
   gridX: 7
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &528679755
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1566,6 +1583,7 @@ MonoBehaviour:
   gridX: 2
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &540403280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1654,6 +1672,7 @@ MonoBehaviour:
   gridX: 1
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &589409112
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1742,6 +1761,7 @@ MonoBehaviour:
   gridX: 4
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 385355405}
 --- !u!212 &609016161
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1830,6 +1850,7 @@ MonoBehaviour:
   gridX: 6
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &646554721
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1918,6 +1939,7 @@ MonoBehaviour:
   gridX: 5
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &681903236
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2006,6 +2028,7 @@ MonoBehaviour:
   gridX: 6
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 1187773019}
 --- !u!212 &691954028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2094,6 +2117,7 @@ MonoBehaviour:
   gridX: 7
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &754920443
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2182,6 +2206,7 @@ MonoBehaviour:
   gridX: 6
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &755321001
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2270,6 +2295,7 @@ MonoBehaviour:
   gridX: 3
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &790147782
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2358,6 +2384,7 @@ MonoBehaviour:
   gridX: 2
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &816077241
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2446,6 +2473,7 @@ MonoBehaviour:
   gridX: 2
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &819566509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2531,6 +2559,30 @@ Prefab:
       propertyPath: y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: defense
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: magic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: magicDefense
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
   m_IsPrefabParent: 0
@@ -2592,6 +2644,7 @@ MonoBehaviour:
   gridX: 5
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &998353014
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2680,6 +2733,7 @@ MonoBehaviour:
   gridX: 4
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1017056642
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2768,6 +2822,7 @@ MonoBehaviour:
   gridX: 1
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1094195867
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2856,6 +2911,7 @@ MonoBehaviour:
   gridX: 2
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1120174250
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2944,6 +3000,7 @@ MonoBehaviour:
   gridX: 0
   gridY: 2
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1122020518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3032,6 +3089,7 @@ MonoBehaviour:
   gridX: 5
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 1624418601}
 --- !u!212 &1123980130
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3120,6 +3178,7 @@ MonoBehaviour:
   gridX: 1
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1126542079
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3208,6 +3267,7 @@ MonoBehaviour:
   gridX: 3
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1148872036
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3517,6 +3577,7 @@ MonoBehaviour:
   gridX: 4
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1246721983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3605,6 +3666,7 @@ MonoBehaviour:
   gridX: 5
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1268916427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3693,6 +3755,7 @@ MonoBehaviour:
   gridX: 2
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1295888317
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3774,6 +3837,30 @@ Prefab:
       propertyPath: y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: defense
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: magic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489950, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
+      propertyPath: magicDefense
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd464f0b34cd0da47949ede365f20064, type: 2}
   m_IsPrefabParent: 0
@@ -3835,6 +3922,7 @@ MonoBehaviour:
   gridX: 7
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1357305438
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3923,6 +4011,7 @@ MonoBehaviour:
   gridX: 0
   gridY: 1
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1396938943
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4039,6 +4128,7 @@ MonoBehaviour:
   gridX: 5
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1511064685
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4127,6 +4217,7 @@ MonoBehaviour:
   gridX: 3
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1524351886
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4157,6 +4248,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &1624418601 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 168586, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
+  m_PrefabInternal: {fileID: 2125783983}
 --- !u!1 &1632010138
 GameObject:
   m_ObjectHideFlags: 0
@@ -4276,6 +4371,7 @@ MonoBehaviour:
   gridX: 1
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1683127640
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4364,6 +4460,7 @@ MonoBehaviour:
   gridX: 0
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1789683187
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4452,6 +4549,7 @@ MonoBehaviour:
   gridX: 0
   gridY: 3
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1803893171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4583,6 +4681,7 @@ MonoBehaviour:
   gridX: 5
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1900457126
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4671,6 +4770,7 @@ MonoBehaviour:
   gridX: 2
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1970774892
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4740,6 +4840,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11494916, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
+      propertyPath: baseHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494916, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
+      propertyPath: baseStrength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494916, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
+      propertyPath: baseDefence
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494916, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
+      propertyPath: baseMagic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11494916, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
+      propertyPath: baseMagicDefense
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
   m_IsPrefabParent: 0
@@ -4801,6 +4921,7 @@ MonoBehaviour:
   gridX: 6
   gridY: 0
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &1988203195
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4889,6 +5010,7 @@ MonoBehaviour:
   gridX: 3
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &2006984509
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4977,6 +5099,7 @@ MonoBehaviour:
   gridX: 7
   gridY: 4
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &2069757994
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5069,6 +5192,7 @@ MonoBehaviour:
   gridX: 4
   gridY: 5
   mouseController: {fileID: 0}
+  character: {fileID: 0}
 --- !u!212 &2125113155
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5149,6 +5273,30 @@ Prefab:
     - target: {fileID: 11422066, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
       propertyPath: y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422066, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
+      propertyPath: id
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422066, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422066, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
+      propertyPath: strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422066, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
+      propertyPath: defense
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422066, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
+      propertyPath: magic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422066, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
+      propertyPath: magicDefense
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}

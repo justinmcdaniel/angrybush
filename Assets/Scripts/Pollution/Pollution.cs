@@ -36,21 +36,23 @@ public class Pollution : MonoBehaviour {
 	}
 
 	// Update is called once per frame
+	/*
 	void Update () {
 		if (isDamaged) {
-			damageImage.color = flashColor;
+			//damageImage.color = flashColor;
 		} else {
-			damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+			//damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 		}
 		isDamaged = false;
 	}
+	*/
 
 	public void TakeDamage (int amount) {
 		isDamaged = true;
 
 		currentHealth -= amount;
 
-		healthSlider.value = currentHealth;
+		//healthSlider.value = currentHealth;
 
 		//Play damage audio
 
