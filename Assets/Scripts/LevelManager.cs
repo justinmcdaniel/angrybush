@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
 	public Stage currentStage;
 
 	public Dictionary <string, int> plantPositions;
+	public GameManager gameManager;
 
 	[Serializable]
 	public struct Position {
@@ -23,11 +24,7 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-		plantPositions = new Dictionary<string, int> () { };
-
-		foreach (Position position in plantStartingPositions) {
-			plantPositions [position.key] = position.value;
-		}
+		gameManager = (GameManager)GameObject.Find ("GameManager").GetComponent (typeof(GameManager));
 
 		InitLevel ();
 
@@ -47,13 +44,26 @@ public class LevelManager : MonoBehaviour {
 		// load plants
 		// load pollutions
 
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 	}
+
+	public GameObject getCharacterAtGridPosition (int gridX, int gridY) {
+		string targetKey = gridX.ToString () + gridY.ToString ();
+		if (this.currentStage.plantPositions.ContainsKey (targetKey)) {
+			int plantListPosition = this.currentStage.plantPositions [targetKey];
+			return gameManager.plants [plantListPosition];
+		} else if (this.currentStage.pollutions.ContainsKey (targetKey)) {
+			return this.currentStage.pollutions [targetKey];
+		} else {
+			return null;
+		}
+
+	}
+	
 
 	public void Combat() {
 		Debug.Log ("Combat Initiated");
