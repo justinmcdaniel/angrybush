@@ -12,7 +12,7 @@ public class GridTile : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		mouseController = (MouseController)GameObject.Find ("MouseController").GetComponent (typeof(MouseController));
+		mouseController = (MouseController)GameObject.Find ("Main Camera").GetComponent (typeof(MouseController));
 	}
 	
 	// Update is called once per frame

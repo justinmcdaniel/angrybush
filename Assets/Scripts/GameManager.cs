@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;
 	public System.TimeSpan turnTime = new TimeSpan(0,0,5);
+	public Stage stage;
 
 	GameObject[] pollutions;
 
@@ -22,11 +23,16 @@ public class GameManager : MonoBehaviour {
 		pollutions = GameObject.FindGameObjectsWithTag ("Pollution");
 
 		InitGame ();
+
+		//Assumes gameObject is "Main Camera"
+		stage = (Stage)gameObject.GetComponent (typeof(Stage));
 	}
 
 	void InitGame() {
 		// load plants
 		// load pollutions
+
+
 	}
 	
 	// Update is called once per frame
@@ -141,6 +147,11 @@ public class GameManager : MonoBehaviour {
 
 		} while (end);
 		//updateBoard ();
+	}
+
+	void moveCharacter(GameObject selectedCharacter, int newX, int newY) {
+		//assumes selectedCharacter still has oldX, oldY
+
 	}
 
 	void AIMove() {

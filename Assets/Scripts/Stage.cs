@@ -23,4 +23,5 @@ public class Stage : MonoBehaviour {
 			{pollution_1_position, pollution_1}
 		};
 	}
+
 }
