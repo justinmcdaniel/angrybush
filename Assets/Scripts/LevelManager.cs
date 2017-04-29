@@ -8,11 +8,13 @@ public class LevelManager : MonoBehaviour {
 	public Stage[] stages;
 	public Stage currentStage;
 
-	GameObject[] pollutions;
+	public string plant_1_position;
+	public int plant_1_index;
+	//Dictionary<"XY", listIndex>
+	public Dictionary <string, int> plantPositions;
 
 	// Use this for initialization
 	void Awake () {
-		pollutions = GameObject.FindGameObjectsWithTag ("Pollution");
 
 		InitLevel ();
 
@@ -25,6 +27,9 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 
+		plantPositions = new Dictionary<string, int>() {
+			{plant_1_position, plant_1_index}
+		};
 	}
 
 	void InitLevel() {
@@ -41,9 +46,9 @@ public class LevelManager : MonoBehaviour {
 
 	public void Combat() {
 		Debug.Log ("Combat Initiated");
-		foreach (GameObject pollutionObject in pollutions) {
+		foreach (KeyValuePair<string, GameObject> pollutionObject in currentStage.pollutions) {
 			int damage = 0;
-			Pollution pollution = ((Pollution) pollutionObject.GetComponent (typeof(Pollution)));
+			Pollution pollution = ((Pollution) pollutionObject.Value.GetComponent (typeof(Pollution)));
 			Debug.Log ("Pollution Id: " + pollution.id);
 			Debug.Log ("Pollution X: " + pollution.x);
 			Debug.Log ("Pollution Y: " + pollution.y);
