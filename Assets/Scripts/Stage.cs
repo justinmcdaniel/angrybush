@@ -1,14 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public class Stage : MonoBehaviour {
 
 	public bool activeStage;
 
-
-	//Dictionary<"XY", listIndex>
-	public Dictionary <string, int> plantPositions;
 
 	public GameObject pollution_1;
 	public string pollution_1_position;

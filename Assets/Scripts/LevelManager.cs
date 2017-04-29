@@ -8,13 +8,21 @@ public class LevelManager : MonoBehaviour {
 	public Stage[] stages;
 	public Stage currentStage;
 
-	public string plant_1_position;
-	public int plant_1_index;
-	//Dictionary<"XY", listIndex>
 	public Dictionary <string, int> plantPositions;
+
+	public List<string> pairs;
+
+	public List<GameObject> plants;
 
 	// Use this for initialization
 	void Awake () {
+
+		plantPositions = new Dictionary<string, int> () { };
+
+		foreach (string str in pairs) {
+			String[] parts = str.Split (':');
+			plantPositions [parts [0]] = Convert.ToInt32( parts [1]);
+		}
 
 		InitLevel ();
 
@@ -27,9 +35,7 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 
-		plantPositions = new Dictionary<string, int>() {
-			{plant_1_position, plant_1_index}
-		};
+		plants = ((GameManager)GameObject.Find ("GameManager").GetComponent (typeof(GameManager))).plants;
 	}
 
 	void InitLevel() {
@@ -62,8 +68,6 @@ public class LevelManager : MonoBehaviour {
 			x = -1;
 			y = 0;
 			do {
-				Debug.Log("X: " + x);
-				Debug.Log("Y: " + y);
 				GameObject leftGrid = GameObject.Find ("grid_tile_" + Convert.ToString (gridX+x) + Convert.ToString (gridY+y));
 				if (((GridTile)leftGrid.GetComponent (typeof(GridTile))).character) {
 					leftCharacter = ((GridTile)leftGrid.GetComponent (typeof(GridTile))).character;
