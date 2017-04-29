@@ -55,12 +55,12 @@ public class Pollution : MonoBehaviour {
 	}
 	*/
 
-	public void TakeDamage (int amount, EnumDamageType.DamageType damageType) {
+	public void TakeDamage (int amount, Enumerations.DamageType damageType) {
 		int damage = 0;
-		if (damageType == EnumDamageType.DamageType.Magic) {
+		if (damageType == Enumerations.DamageType.Magic) {
 			damage = amount * (stats.baseMagicDefense / magicDefense);
 		}
-		else if (damageType == EnumDamageType.DamageType.Physical) {
+		else if (damageType == Enumerations.DamageType.Physical) {
 			damage = amount * (stats.baseDefence / defense);
 		}
 

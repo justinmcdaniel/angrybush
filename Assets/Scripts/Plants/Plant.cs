@@ -68,11 +68,11 @@ public class Plant : MonoBehaviour {
 		return damage;
 	}
 
-	public EnumDamageType.DamageType DoDamageType () {
+	public Enumerations.DamageType DoDamageType () {
 		return skill.damageType;
 	}
 
-	public void TakeDamage (int amount, EnumDamageType.DamageType damageType) {
+	public void TakeDamage (int amount, Enumerations.DamageType damageType) {
 		int damage = 0;
 		if (skill.damageType == Enumerations.DamageType.Magic) {
 			damage = amount * (stats.baseMagicDefense / magicDefense);
