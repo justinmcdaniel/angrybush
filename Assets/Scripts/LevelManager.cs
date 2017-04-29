@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour {
 	public Stage currentStage;
 
 	public Dictionary <string, int> plantPositions;
-	public GameManager gameManager;
+	GameManager gameManager;
 
 	[Serializable]
 	public struct Position {
