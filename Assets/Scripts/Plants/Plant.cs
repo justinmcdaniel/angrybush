@@ -18,7 +18,7 @@ public class Plant : MonoBehaviour {
 	public int currentHealth;
 	public Slider healthSlider;
 	public Image damageImage;
-	//public AudioClip deathClip;
+
 	public float flashSpeed = 5f;
 	public Color flashColor = new Color (1f, 0f, 0f, 0.1f);
 
@@ -31,14 +31,16 @@ public class Plant : MonoBehaviour {
 	GameObject globalStats;
 	Stats stats;
 
+	Skill skill;
+
 	// Use this for initialization
 	void Awake () {
 		globalStats = GameObject.Find ("globalStats");
 		stats = (Stats)globalStats.GetComponent (typeof(Stats));
 
-		anim = GetComponent <Animator> ();
-		//playerAudio = GetComponent <AudioSource> ();
-		currentHealth = health / stats.baseHealth;
+		currentHealth = health;
+
+		skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
 	}
 	
 	// Update is called once per frame
@@ -54,7 +56,6 @@ public class Plant : MonoBehaviour {
 	*/
 
 	public int DoDamage () {
-		Skill skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
 
 		int damage = 0;
 		if (skill.damageType == EnumDamageType.DamageType.Magic) {
@@ -63,15 +64,20 @@ public class Plant : MonoBehaviour {
 		else if (skill.damageType == EnumDamageType.DamageType.Physical) {
 			damage = skill.damage * (strength / stats.baseStrength);
 		}
+		Debug.Log (damage);
 		return damage;
 	}
 
-	public void TakeDamage (int amount, Skill skill) {
+	public EnumDamageType.DamageType DoDamageType () {
+		return skill.damageType;
+	}
+
+	public void TakeDamage (int amount, EnumDamageType.DamageType damageType) {
 		int damage = 0;
-		if (skill.damageType == EnumDamageType.DamageType.Magic) {
+		if (damageType == EnumDamageType.DamageType.Magic) {
 			damage = amount * (stats.baseMagicDefense / magicDefense);
 		}
-		else if (skill.damageType == EnumDamageType.DamageType.Physical) {
+		else if (damageType == EnumDamageType.DamageType.Physical) {
 			damage = amount * (stats.baseDefence / defense);
 		}
 
@@ -79,7 +85,7 @@ public class Plant : MonoBehaviour {
 
 		currentHealth -= damage;
 
-		healthSlider.value = currentHealth;
+		//healthSlider.value = currentHealth;
 
 		//Play damage audio
 
