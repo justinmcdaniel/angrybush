@@ -254,7 +254,11 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void AiCombat() {
-		foreach (KeyValuePair<string, int> plantPosition in plantPositions) {
+		string[] keysDebugPlant = new string[this.plantPositions.Keys.Count];
+		this.plantPositions.Keys.CopyTo (keysDebugPlant, 0);
+		KeyValuePair<string, int> plantPosition;
+		foreach (string keyPlant in keysDebugPlant) {
+			plantPosition = new KeyValuePair<string,int> (keyPlant, plantPositions [keyPlant]);
 			int damage = 0;
 			Plant plant = ((Plant) plants[plantPosition.Value].GetComponent(typeof(Plant)));
 

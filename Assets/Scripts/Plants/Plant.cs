@@ -141,6 +141,8 @@ public class Plant : MonoBehaviour {
 	void Death() {
 		isDead = true;
 
+		gameObject.SetActive (false);
+
 		//anim.SetTrigger ("Die");
 
 		//playerAudio.clip = deathClip;
