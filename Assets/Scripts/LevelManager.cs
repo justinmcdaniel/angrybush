@@ -73,11 +73,49 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	public void movePlantToPosition_Freely(GameObject plant, int fromGridX, int fromGridY, int toGridX, int toGridY) {
+		string fromKey = fromGridX.ToString () + fromGridY.ToString ();
+		string toKey = toGridX.ToString () + toGridY.ToString ();
+		string[] keysDebug = new string[this.plantPositions.Keys.Count];
+		this.plantPositions.Keys.CopyTo (keysDebug, 0);
+		Debug.Log (String.Join (",", keysDebug));
+		Debug.Log ("ToKey: " + toKey + ", FromKey: " + fromKey);
+		if (this.plantPositions.ContainsKey(fromKey)) {
+			Debug.Log ("contains the key");
+			int plantIndex = this.plantPositions [fromKey];
+			this.plantPositions.Remove (fromKey);
+			this.plantPositions.Add (toKey, plantIndex);
+			plant.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
+		}
+	}
+
+	public void movePlantToPosition_Swap(GameObject plant, int fromGridX, int fromGridY, int toGridX, int toGridY) {
+		string fromKey = fromGridX.ToString () + fromGridY.ToString ();
+		string toKey = toGridX.ToString () + toGridY.ToString ();
+		GameObject fromGridTile = GameObject.Find ("grid_tile_" + fromKey);
+		GameObject toGridTile = GameObject.Find ("grid_tile_" + toKey);
+		GameObject toCharacter = this.getCharacterAtGridPosition (toGridX, toGridY);
+		if (this.plantPositions.ContainsKey (fromKey) && this.plantPositions.ContainsKey (toKey)) {
+			int plantIndex_From = this.plantPositions [fromKey];
+			int plantIndex_To = this.plantPositions [toKey];
+			this.plantPositions.Remove (fromKey);
+			this.plantPositions.Remove (toKey);
+			this.plantPositions.Add (toKey, plantIndex_From);
+			this.plantPositions.Add (fromKey, plantIndex_To);
+			toCharacter.transform.position = fromGridTile.transform.position;
+			plant.transform.position = toGridTile.transform.position;
+		} else {
+			throw new Exception ("Swapping plants error: fromKey or toKey does not exist in dictionary");
+		}
+	}
+
 
 
 	public Enumerations.MoveType getMoveTypeToGridPosition (int targetGridX, int targetGridY, int sourceGridX, int sourceGridY, GameObject sourceCharacter) {
 		GameObject targetCharacter = this.getCharacterAtGridPosition (targetGridX, targetGridY);
-		if (targetCharacter == null) {
+		if (targetGridX == sourceGridX && targetGridY == sourceGridY) {
+			return Enumerations.MoveType.None;
+		} else if (targetCharacter == null) {
 			return Enumerations.MoveType.Free;
 		} else if (targetCharacter.tag == targetCharacter.tag) {
 			return Enumerations.MoveType.Swap;

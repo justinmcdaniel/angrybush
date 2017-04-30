@@ -5,12 +5,13 @@ public class MouseGridController : MonoBehaviour {
 
 	public int GridX { get { return this.gridX; } }
 	public int GridY { get { return this.gridY; } }
-	public bool MouseIsDown {get { return this.MouseIsDown; } }
+	public bool MouseIsDown { get { return this.MouseIsDown; } }
+	public bool isBlocked = false;
 
 	private int gridX;
 	private int gridY;
-	private int lastGoodGridX;
-	private int lastGoodGridY;
+	private int plantHoldGridX;
+	private int plantHoldGridY;
 	private bool mouseIsDown;
 	private GameObject currentCharacter;
 	private LevelManager levelManager;
@@ -21,11 +22,12 @@ public class MouseGridController : MonoBehaviour {
 	void Awake () {
 		mainCamera = gameObject;
 		levelManager = (LevelManager)mainCamera.GetComponent (typeof(LevelManager));
-		gameManager = (GameManager)GameObject.Find("GameManager").GetComponent (typeof(GameManager));
+		gameManager = (GameManager)GameObject.Find("GameManager").GetComponent (typeof(GameManager));	
 
 		gridX = -1;
 		gridY = -1;
 		mouseIsDown = false;
+		this.isBlocked = false;
 	}
 	
 	// Update is called once per frame
@@ -33,22 +35,41 @@ public class MouseGridController : MonoBehaviour {
 		
 	}
 
-	public void mouseEnter(int gridX, int gridY) {
-		this.gridX = gridX;
-		this.gridY = gridY;
-		Debug.Log ("X: " + this.gridX + ", Y: " + this.gridY);
+	public void mouseEnter(int toGridX, int toGridY) {
 
-		if (this.mouseIsDown && this.currentCharacter != null) {
-			GameObject targetGrid = GameObject.Find ("grid_tile_" + this.gridX.ToString() + this.gridY.ToString());
-			this.currentCharacter.transform.position = targetGrid.transform.position;
 
+		if (this.isBlocked) {
+			if (this.plantHoldGridX == toGridX && this.plantHoldGridY == toGridY) {
+				this.isBlocked = false;
+			}
+		} 
+
+		if (!this.isBlocked) {	
+			this.plantHoldGridX = this.gridX;
+			this.plantHoldGridY = this.gridY;
 		}
+
+		this.gridX = toGridX;
+		this.gridY = toGridY;
+
+		GameObject targetGrid = GameObject.Find ("grid_tile_" + this.gridX.ToString() + this.gridY.ToString());
+
+		if (this.mouseIsDown && this.currentCharacter != null && !this.isBlocked) {
+			Enumerations.MoveType moveType = levelManager.getMoveTypeToGridPosition (this.gridX, this.gridY, this.plantHoldGridX, this.plantHoldGridY, this.currentCharacter);
+			Debug.Log (moveType);
+			if (Enumerations.MoveType.Free == moveType) {
+				this.levelManager.movePlantToPosition_Freely (this.currentCharacter, this.plantHoldGridX, this.plantHoldGridY, this.gridX, this.gridY);
+			} else if (Enumerations.MoveType.Swap == moveType) {
+				this.levelManager.movePlantToPosition_Swap (this.currentCharacter, this.plantHoldGridX, this.plantHoldGridY, this.gridX, this.gridY);
+			} else { 
+				this.isBlocked = true;
+			}
+		}
+
 	}
 
 	public void mouseExit() {
 		
-		this.gridX = -1;
-		this.gridY = -1;
 
 		//todo: remember last good position when hitting walls.
 	}
@@ -56,6 +77,7 @@ public class MouseGridController : MonoBehaviour {
 	public void mouseUp() {
 		this.mouseIsDown = false;
 		this.currentCharacter = null;
+		this.isBlocked = false;
 		levelManager.Combat ();
 		//todo: call character drop code here
 	}
@@ -64,7 +86,10 @@ public class MouseGridController : MonoBehaviour {
 		this.mouseIsDown = true;
 		this.currentCharacter = levelManager.getCharacterAtGridPosition (this.gridX, this.gridY);
 		if (this.currentCharacter != null) {
-			Debug.Log (((Skill)this.currentCharacter.GetComponent (typeof(Skill))).damage.ToString ());
+			Debug.Log (this.currentCharacter);
+			if (this.currentCharacter.tag == "Pollution") {
+				this.currentCharacter = null;
+			}
 		} else {
 			Debug.Log ("no char here");
 		}
