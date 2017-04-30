@@ -155,9 +155,12 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void Combat() {
-		Debug.Log ("Combat Initiated");
-		foreach (KeyValuePair<string, GameObject> pollutionObject in currentStage.pollutions) {
+	public void PlayerCombat() {
+		string[] keysDebug = new string[this.currentStage.pollutions.Keys.Count];
+		this.currentStage.pollutions.Keys.CopyTo (keysDebug, 0);
+		KeyValuePair<string, GameObject> pollutionObject;
+		foreach (string key in keysDebug) {
+			pollutionObject = new KeyValuePair<string,GameObject> (key, currentStage.pollutions [key]);
 			int damage = 0;
 			Pollution pollution = ((Pollution) pollutionObject.Value.GetComponent (typeof(Pollution)));
 
@@ -246,6 +249,86 @@ public class LevelManager : MonoBehaviour {
 		AIMove ();
 	}
 
+	public void AiCombat() {
+		foreach (KeyValuePair<string, int> plantPosition in plantPositions) {
+			int damage = 0;
+			Plant plant = ((Plant) plants[plantPosition.Value].GetComponent(typeof(Plant)));
+
+			int gridX = plant.x; 
+			int gridY = plant.y;
+			int x;
+			int y;
+
+			// Left
+			GameObject leftCharacter = null;
+			x = -1;
+			y = 0;
+			do {
+				leftCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
+				x--;
+			} while (leftCharacter != null && leftCharacter.tag == "Plant" && (gridX+x) >= 0);
+
+			// Right
+			if (leftCharacter != null && leftCharacter.tag == "Pollution") {
+				GameObject rightCharacter = null;
+				x = 1;
+				y = 0;
+				do {
+					rightCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
+					if (rightCharacter != null) {
+					}
+					x++;
+				} while (rightCharacter != null && rightCharacter.tag == "Plant" && (gridX+x) <= 7);
+
+				if (rightCharacter != null && rightCharacter.tag == "Pollution") {
+					Pollution pollutionRight = ((Pollution)rightCharacter.GetComponent (typeof(Pollution)));
+					plant.TakeDamage(pollutionRight.DoDamage (), pollutionRight.DoDamageType());
+					Pollution pollutionLeft = ((Pollution)leftCharacter.GetComponent (typeof(Pollution)));
+					plant.TakeDamage(pollutionLeft.DoDamage (), pollutionLeft.DoDamageType());
+				}
+			}
+
+			// Up
+			GameObject topCharacter = null;
+			x = 0;
+			y = -1;
+			do {
+				topCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
+				y--;
+			} while (topCharacter != null && topCharacter.tag == "Plant" && (gridY+y) >= 0);
+
+			// Down
+			if (topCharacter != null && topCharacter.tag == "Pollution") {
+				GameObject bottomCharacter = null;
+				x = 0;
+				y = 1;
+				do {
+					bottomCharacter = getCharacterAtGridPosition(gridX+x, gridY+y);
+					y++;
+				} while (bottomCharacter != null && bottomCharacter.tag == "Plant" && (gridX+y) <= 7);
+
+				if (bottomCharacter != null && bottomCharacter.tag == "Pollution") {
+					Pollution pollutionTop = ((Pollution)topCharacter.GetComponent (typeof(Pollution)));
+					plant.TakeDamage(pollutionTop.DoDamage (),pollutionTop.DoDamageType());
+					Pollution pollutionBottom = ((Pollution)bottomCharacter.GetComponent (typeof(Pollution)));
+					plant.TakeDamage(pollutionBottom.DoDamage (), pollutionBottom.DoDamageType());
+				}
+			}
+
+			if (plant.isDead) {
+				plantPositions.Remove (plantPosition.Key);
+				plants [plantPosition.Value].SetActive(false);
+
+				if (plantPositions.Count == 0) {
+					levelLose ();
+					break;
+				}
+			}
+		}
+
+		//System.Threading.Thread.Sleep (1000);
+	}
+
 	void PlayerMove() {
 		bool end = false;
 		DateTime start = System.DateTime.Now;
@@ -272,10 +355,18 @@ public class LevelManager : MonoBehaviour {
 
 	void AIMove() {
 		Debug.Log ("AI Move Initiated");
-		foreach (KeyValuePair<string, GameObject> pollutionObject in currentStage.pollutions) {
+		string[] keysDebug = new string[this.currentStage.pollutions.Keys.Count];
+		this.currentStage.pollutions.Keys.CopyTo (keysDebug, 0);
+		KeyValuePair<string, GameObject> pollutionObject;
+		foreach (string key in keysDebug) {
+			pollutionObject = new KeyValuePair<string,GameObject> (key, currentStage.pollutions [key]);
 			string bestPosition = "";
 			string backupPosition = "";
-			foreach (KeyValuePair<string, int> plantLocation in plantPositions) {
+			string[] keysDebugPlant = new string[this.plantPositions.Keys.Count];
+			this.plantPositions.Keys.CopyTo (keysDebugPlant, 0);
+			KeyValuePair<string, int> plantLocation;
+			foreach (string keyPlant in keysDebugPlant) {
+				plantLocation = new KeyValuePair<string,int> (keyPlant, plantPositions [keyPlant]);
 				int plantX = int.Parse(plantLocation.Key [0].ToString());
 				int plantY = int.Parse(plantLocation.Key [1].ToString());
 
@@ -465,13 +556,14 @@ public class LevelManager : MonoBehaviour {
 
 			movePollutionToPosition_Freely (pollutionObject.Value, int.Parse (pollutionObject.Key [0].ToString ()), int.Parse (pollutionObject.Key [1].ToString ()), int.Parse (bestPosition [0].ToString ()), int.Parse (bestPosition [1].ToString ()));
 		}
+		AiCombat ();
 	}
 
 	void levelWin () {
 		SceneManager.LoadScene ("LevelWin");
 	}
 
-	bool isLose () {
-		return false;
+	void levelLose () {
+		SceneManager.LoadScene ("LevelWin");
 	}
 }

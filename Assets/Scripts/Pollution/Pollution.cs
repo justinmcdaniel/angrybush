@@ -78,6 +78,23 @@ public class Pollution : MonoBehaviour {
 		Destroy (temp.gameObject, 2);
 	}
 
+	public int DoDamage () {
+
+		int damage = 0;
+		if (skill.damageType == Enumerations.DamageType.Magic) {
+			damage = skill.damage * (magic / stats.baseMagic);
+		}
+		else if (skill.damageType == Enumerations.DamageType.Physical) {
+			damage = skill.damage * (strength / stats.baseStrength);
+		}
+		Debug.Log (damage);
+		return damage;
+	}
+
+	public Enumerations.DamageType DoDamageType () {
+		return skill.damageType;
+	}
+
 	public void TakeDamage (int amount, Enumerations.DamageType damageType) {
 		int damage = 0;
 		if (damageType == Enumerations.DamageType.Magic) {
