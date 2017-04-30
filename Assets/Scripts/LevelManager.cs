@@ -192,6 +192,8 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 		}
+
+		AIMove ();
 	}
 
 	void PlayerMove() {
@@ -215,7 +217,73 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void AIMove() {
+		Debug.Log ("AI Move Initiated");
+		foreach (KeyValuePair<string, GameObject> pollutionObject in currentStage.pollutions) {
+			Debug.Log ("Pollution: " + pollutionObject.Key);
+			string bestPosition = "";
+			foreach (KeyValuePair<string, int> plantLocation in plantPositions) {
+				Debug.Log ("Plant: " + plantLocation.Key);
+				int plantX = int.Parse(plantLocation.Key [0].ToString());
+				int plantY = int.Parse(plantLocation.Key [1].ToString());
 
+				// get Left and Right Characters
+				if ((plantX - 1) >= 0 && (plantX + 1) <= 7) {
+					GameObject leftChar = getCharacterAtGridPosition (plantX - 1, plantY);
+					GameObject rightChar = getCharacterAtGridPosition (plantX + 1, plantY);
+
+					if (leftChar == null) {
+						// Look to Right
+						if (rightChar != null && rightChar.tag == "Pollution") {
+							bestPosition = (plantX + 1).ToString () + plantY.ToString ();
+							break;
+						} else if (rightChar != null && rightChar.tag == "Plant") {
+							int i = 2;
+							bool done = false;
+							do {
+								if ((plantX + i) <= 7) {
+									rightChar = getCharacterAtGridPosition (plantX + i, plantY);
+
+									if (rightChar != null && rightChar.tag == "Pollution") {
+										bestPosition = (plantX + 1).ToString () + plantY.ToString ();
+										break;
+									} else if (rightChar == null) {
+										done = true;
+									}
+									i++;
+								} else {
+									done = true;
+								}
+							} while (!done);
+						}
+					} else if (rightChar == null) {
+						// Look to Left
+						if (leftChar != null && leftChar.tag == "Pollution") {
+							bestPosition = (plantX + 1).ToString () + plantY.ToString ();
+							break;
+						} else if (leftChar != null && leftChar.tag == "Plant") {
+							int i = 2;
+							bool done = false;
+							do {
+								if ((plantX - i) >= 0) {
+									leftChar = getCharacterAtGridPosition (plantX - i, plantY);
+
+									if (leftChar != null && leftChar.tag == "Pollution") {
+										bestPosition = (plantX - 1).ToString () + plantY.ToString ();
+										break;
+									} else if (leftChar == null) {
+										done = true;
+									}
+									i++;
+								} else {
+									done = true;
+								}
+							} while (!done);
+						}
+					}
+				}
+			}
+			Debug.Log ("Best Position: " + bestPosition);
+		}
 	}
 
 	bool PlayerWin () {
