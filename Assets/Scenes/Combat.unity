@@ -1411,6 +1411,10 @@ Prefab:
       propertyPath: m_TagString
       value: Finish
       objectReference: {fileID: 0}
+    - target: {fileID: 22341296, guid: f81d23945389f924d85894f8c27fef01, type: 2}
+      propertyPath: m_SortingLayerID
+      value: 2010563081
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f81d23945389f924d85894f8c27fef01, type: 2}
   m_IsPrefabParent: 0
@@ -1659,6 +1663,10 @@ Prefab:
     - target: {fileID: 162318, guid: f81d23945389f924d85894f8c27fef01, type: 2}
       propertyPath: m_TagString
       value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 22341296, guid: f81d23945389f924d85894f8c27fef01, type: 2}
+      propertyPath: m_SortingLayerID
+      value: 2010563081
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f81d23945389f924d85894f8c27fef01, type: 2}
@@ -2221,6 +2229,10 @@ Prefab:
     - target: {fileID: 162318, guid: f81d23945389f924d85894f8c27fef01, type: 2}
       propertyPath: m_TagString
       value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 22341296, guid: f81d23945389f924d85894f8c27fef01, type: 2}
+      propertyPath: m_SortingLayerID
+      value: 2010563081
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f81d23945389f924d85894f8c27fef01, type: 2}
@@ -3181,6 +3193,10 @@ Prefab:
     - target: {fileID: 162318, guid: f81d23945389f924d85894f8c27fef01, type: 2}
       propertyPath: m_TagString
       value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 22341296, guid: f81d23945389f924d85894f8c27fef01, type: 2}
+      propertyPath: m_SortingLayerID
+      value: 2010563081
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f81d23945389f924d85894f8c27fef01, type: 2}
