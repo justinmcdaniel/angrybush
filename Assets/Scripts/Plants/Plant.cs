@@ -47,8 +47,8 @@ public class Plant : MonoBehaviour {
 
 		skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
 
-		healthBar = transform.FindChild ("PollutionCanvas").FindChild ("HealthBar").FindChild ("Health").GetComponent<Image> ();
-		healthBarBackground = transform.FindChild ("PollutionCanvas").FindChild ("HealthBar").GetComponent<Image> ();
+		healthBar = transform.FindChild ("PlantCanvas").FindChild ("HealthBar").FindChild ("Health").GetComponent<Image> ();
+		healthBarBackground = transform.FindChild ("PlantCanvas").FindChild ("HealthBar").GetComponent<Image> ();
 		healthBar.enabled = false;
 		healthBarBackground.enabled = false;
 	}
@@ -106,6 +106,7 @@ public class Plant : MonoBehaviour {
 
 		isDamaged = true;
 
+		Debug.Log ("Damage: " + damage);
 		currentHealth -= damage;
 
 		InitPopupText (damage.ToString());

@@ -276,8 +276,10 @@ public class LevelManager : MonoBehaviour {
 
 				if (rightCharacter != null && rightCharacter.tag == "Pollution") {
 					Pollution pollutionRight = ((Pollution)rightCharacter.GetComponent (typeof(Pollution)));
+					Debug.Log ("Damage: Right");
 					plant.TakeDamage(pollutionRight.DoDamage (), pollutionRight.DoDamageType());
 					Pollution pollutionLeft = ((Pollution)leftCharacter.GetComponent (typeof(Pollution)));
+					Debug.Log ("Damage: Left");
 					plant.TakeDamage(pollutionLeft.DoDamage (), pollutionLeft.DoDamageType());
 				}
 			}
