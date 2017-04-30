@@ -900,6 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01791a981bf7d4fe38bdecf354aa309d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBlocked: 0
 --- !u!114 &281642893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2058,8 +2059,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ddfcebec2db604c904aa777b1a336a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myGUIText: {fileID: 0}
-  guiTime: 2
 --- !u!4 &841466743
 Transform:
   m_ObjectHideFlags: 0
@@ -2733,6 +2732,11 @@ Prefab:
       propertyPath: magicDefense
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 21216402, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5356af057e9154d1781afbc8bcd447a9,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
   m_IsPrefabParent: 0
