@@ -19,7 +19,7 @@ public class Plant : MonoBehaviour {
 	public Slider healthSlider;
 	public Image damageImage;
 
-	public float flashSpeed = 5f;
+	public float flashSpeed = 1f;
 	public Color flashColor = new Color (1f, 0f, 0f, 0.1f);
 
 	Animator anim;
@@ -64,20 +64,32 @@ public class Plant : MonoBehaviour {
 		isDamaged = false;
 	}
 	*/
-	private Vector3 lerpFromPosition;
+	private bool isLerping = false;
 	private Vector3 lerpToPosition;
 	void Update() {
-		if (lerpFromPosition != lerpToPosition) {
-			gameObject.transform.position = Vector3.Lerp (lerpFromPosition, lerpToPosition, flashSpeed * Time.deltaTime);
+	}
+
+	void FixedUpdate() {
+		if (isLerping) {
+			if (gameObject.transform.position != lerpToPosition && Vector3.Distance (gameObject.transform.position, lerpToPosition) > 0.001) {
+				Vector3 newPos = Vector3.Lerp (gameObject.transform.position, lerpToPosition, flashSpeed * Time.deltaTime);
+				Debug.Log (newPos);
+				gameObject.transform.position = newPos;
+				//Debug.Log (Vector3.Distance (gameObject.transform.position, lerpToPosition));
+			} else {
+				gameObject.transform.position = lerpToPosition;
+				isLerping = false;
+			}
 		} 
 	}
 
-	public void LerpTo(Vector3 lerpToPosition) {
-		if (lerpToPosition != lerpFromPosition) {
+	public void LerpTo(float x, float y) {
+		
+		if (isLerping) {
 			gameObject.transform.position = lerpToPosition;
 		}
-		lerpFromPosition = gameObject.transform.position;
-		lerpToPosition = lerpToPosition;
+		lerpToPosition = new Vector3(x, y, gameObject.transform.position.z);
+		isLerping = true;
 	}
 
 	void InitPopupText (string damage) {
