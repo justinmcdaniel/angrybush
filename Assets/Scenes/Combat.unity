@@ -1838,9 +1838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeStage: 1
   pollutionsAndPositions:
-  - key: 54
+  - key: 35
     value: {fileID: 1624418601}
-  - key: 44
+  - key: 77
     value: {fileID: 764072363}
 --- !u!4 &748615444
 Transform:
@@ -1863,11 +1863,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 420166, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.34
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 420166, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.55
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 420166, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2537,11 +2537,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455188, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.24
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 455188, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.29
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 150146, guid: a95cdfdfd7d192a4b84978e241fbacf0, type: 2}
       propertyPath: m_IsActive
@@ -5177,11 +5177,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 420166, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.64
+      value: 2.67
       objectReference: {fileID: 0}
     - target: {fileID: 420166, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.57
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 420166, guid: 2af1f37e0e4dafe4b9157581b9a2f210, type: 2}
       propertyPath: m_LocalPosition.z
