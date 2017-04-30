@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour {
 	
 	public System.TimeSpan turnTime = new TimeSpan(0,0,5);
 	public Stage[] stages;
+	int currentStageIndex = 0;
 	public Stage currentStage;
 
 	public Dictionary <string, int> plantPositions;
@@ -28,12 +29,7 @@ public class LevelManager : MonoBehaviour {
 
 		//Assumes gameObject is "Main Camera"
 		stages = gameObject.GetComponents<Stage>();
-		foreach (Stage stage in stages) {
-			if (stage.activeStage) {
-				currentStage = stage;
-				break;
-			}
-		}
+		currentStage = stages [currentStageIndex];
 
 
 		plantPositions = new Dictionary<string, int> ();
@@ -203,6 +199,15 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 
+		if (currentStage.isStageWin ()) {
+			currentStage.enabled = false;
+			currentStageIndex += 1;
+			if (currentStageIndex > stages.Length ()) {
+				levelWin ();
+			} else {
+				currentStage = stages [currentStageIndex];
+			}
+		}
 		AIMove ();
 	}
 
@@ -352,11 +357,11 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	bool PlayerWin () {
-		return false;
+	void levelWin () {
+		Debug.Log ("Level Win");
 	}
 
-	bool PlayerLose () {
+	bool isLose () {
 		return false;
 	}
 }
