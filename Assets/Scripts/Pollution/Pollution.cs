@@ -80,8 +80,6 @@ public class Pollution : MonoBehaviour {
 	void Death() {
 		isDead = true;
 
-		((LevelManager)GameObject.Find ("Main Camera").GetComponent (typeof(LevelManager))).currentStage.pollutions.Remove (x.ToString() + y.ToString());
-
 		//anim.SetTrigger ("Die");
 
 		//playerAudio.clip = deathClip;
