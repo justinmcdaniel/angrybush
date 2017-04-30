@@ -573,6 +573,9 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void levelWin () {
+		foreach (GameObject plantObject in gameManager.plants) {
+			plantObject.SetActive (false);
+		}
 		SceneManager.LoadScene ("LevelWin");
 	}
 
