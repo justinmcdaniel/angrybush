@@ -243,6 +243,62 @@ public class LevelManager : MonoBehaviour {
 						}
 					}
 				}
+
+				// get Top and Bottom Characters
+				if ((plantY - 1) >= 0 && (plantY + 1) <= 5) {
+					GameObject topChar = getCharacterAtGridPosition (plantX, plantY - 1);
+					GameObject bottomChar = getCharacterAtGridPosition (plantX, plantY + 1);
+
+					if (topChar == null) {
+						// Look to Down
+						if (bottomChar != null && bottomChar.tag == "Pollution") {
+							bestPosition = plantX.ToString () + (plantY - 1).ToString ();
+							break;
+						} else if (bottomChar != null && bottomChar.tag == "Plant") {
+							int i = 2;
+							bool done = false;
+							do {
+								if ((plantY + i) <= 5) {
+									bottomChar = getCharacterAtGridPosition (plantX, plantY + 1);
+
+									if (bottomChar != null && bottomChar.tag == "Pollution") {
+										bestPosition = plantX.ToString () + (plantY - 1).ToString ();
+										break;
+									} else if (bottomChar == null) {
+										done = true;
+									}
+									i++;
+								} else {
+									done = true;
+								}
+							} while (!done);
+						}
+					} else if (bottomChar == null) {
+						// Look to Up
+						if (topChar != null && topChar.tag == "Pollution") {
+							bestPosition = plantX.ToString () + (plantY + 1).ToString ();
+							break;
+						} else if (topChar != null && topChar.tag == "Plant") {
+							int i = 2;
+							bool done = false;
+							do {
+								if ((plantY - i) >= 0) {
+									topChar = getCharacterAtGridPosition (plantX, plantY - 1);
+
+									if (topChar != null && topChar.tag == "Pollution") {
+										bestPosition = plantX.ToString () + (plantY + 1).ToString ();
+										break;
+									} else if (topChar == null) {
+										done = true;
+									}
+									i++;
+								} else {
+									done = true;
+								}
+							} while (!done);
+						}
+					}
+				}
 			}
 			Debug.Log ("Best Position: " + bestPosition);
 		}
