@@ -109,8 +109,10 @@ public class LevelManager : MonoBehaviour {
 		if (currentStage.pollutions.ContainsKey(fromKey)) {
 			currentStage.pollutions.Remove (fromKey);
 			currentStage.pollutions.Add (toKey, pollution);
-			pollution.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
 			Pollution pollutionScr = (Pollution)pollution.GetComponent (typeof(Pollution));
+			GameObject toGridTile = GameObject.Find ("grid_tile_" + toKey);
+			//pollution.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
+			pollutionScr.LerpTo (toGridTile.transform.position.x, toGridTile.transform.position.y);
 			pollutionScr.x = toGridX;
 			pollutionScr.y = toGridY;
 		}
