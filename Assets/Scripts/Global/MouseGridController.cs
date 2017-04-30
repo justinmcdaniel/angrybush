@@ -75,25 +75,24 @@ public class MouseGridController : MonoBehaviour {
 	}
 
 	public void mouseUp() {
-		this.mouseIsDown = false;
-		this.currentCharacter = null;
-		this.isBlocked = false;
-		levelManager.PlayerCombat ();
-		//todo: call character drop code here
+		if (levelManager.IsPlayerTurn && this.mouseIsDown && this.currentCharacter != null) {
+			this.mouseIsDown = false;
+			this.currentCharacter = null;
+			this.isBlocked = false;
+			levelManager.playerMoveEnd (false);
+		}
 	}
 
 	public void mouseDown() {
-		this.mouseIsDown = true;
-		this.currentCharacter = levelManager.getCharacterAtGridPosition (this.gridX, this.gridY);
-		if (this.currentCharacter != null) {
-			Debug.Log (this.currentCharacter);
-			if (this.currentCharacter.tag == "Pollution") {
+		if (levelManager.IsPlayerTurn) {
+			levelManager.playerMoveStart ();
+			this.mouseIsDown = true;
+			this.currentCharacter = levelManager.getCharacterAtGridPosition (this.gridX, this.gridY);
+			if (this.currentCharacter != null && this.currentCharacter.tag == "Pollution") {
 				this.currentCharacter = null;
+			} else {
+				//no char here
 			}
-		} else {
-			Debug.Log ("no char here");
 		}
-
-		//todo: call character picked up here
 	}
 }
