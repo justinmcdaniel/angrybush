@@ -25,7 +25,7 @@ public class Pollution : MonoBehaviour {
 	Animator anim;
 	//AudioSource playerAudio;
 
-	bool isDead;
+	public bool isDead;
 	bool isDamaged;
 
 	GameObject globalStats;
@@ -80,11 +80,11 @@ public class Pollution : MonoBehaviour {
 	void Death() {
 		isDead = true;
 
+		((LevelManager)GameObject.Find ("Main Camera").GetComponent (typeof(LevelManager))).currentStage.pollutions.Remove (x.ToString() + y.ToString());
+
 		//anim.SetTrigger ("Die");
 
 		//playerAudio.clip = deathClip;
 		//playerAudio.Play ();
-		Object.Destroy(gameObject);
-		((LevelManager)GameObject.Find ("Main Camera").GetComponent (typeof(LevelManager))).currentStage.pollutions.Remove (x.ToString () + y.ToString ());
 	}
 }

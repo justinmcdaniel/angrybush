@@ -200,15 +200,22 @@ public class LevelManager : MonoBehaviour {
 					pollution.TakeDamage(plantBottom.DoDamage (), plantBottom.DoDamageType());
 				}
 			}
-		}
 
-		if (currentStage.isStageWin ()) {
-			currentStage.enabled = false;
-			currentStageIndex += 1;
-			if (currentStageIndex > stages.Length) {
-				levelWin ();
-			} else {
-				currentStage = stages [currentStageIndex];
+			if (pollution.isDead) {
+				currentStage.pollutions.Remove (pollutionObject.Key);
+				GameObject.DestroyObject(pollutionObject.Value);
+
+				if (currentStage.pollutions.Count == 0) {
+					Debug.Log ("done");
+					currentStage.enabled = false;
+					currentStageIndex += 1;
+					if (currentStageIndex >= stages.Length) {
+						levelWin ();
+					} else {
+						currentStage = stages [currentStageIndex];
+					}
+					break;
+				}
 			}
 		}
 		AIMove ();
