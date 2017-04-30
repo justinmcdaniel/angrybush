@@ -22,7 +22,16 @@ public class Stage : MonoBehaviour {
 		pollutions = new Dictionary<string, GameObject> () { };
 
 		foreach (PollutionAndPosition pollutionAndPosition in pollutionsAndPositions) {
+			GameObject targetGrid = GameObject.Find ("grid_tile_" + pollutionAndPosition.key);
+			pollutionAndPosition.value.SetActive (true);
+			pollutionAndPosition.value.transform.position = targetGrid.transform.position;
+
+			Pollution pollutionScript = (Pollution)pollutionAndPosition.value.GetComponent(typeof(Pollution));
+			pollutionScript.x = int.Parse(pollutionAndPosition.key[0].ToString());
+			pollutionScript.y = int.Parse(pollutionAndPosition.key [1].ToString());
+
 			pollutions.Add(pollutionAndPosition.key, pollutionAndPosition.value);
+
 		}
 	}
 }
