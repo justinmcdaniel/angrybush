@@ -238,11 +238,16 @@ public class LevelManager : MonoBehaviour {
 			
 	}
 
+	int calcDistance (int x1, int y1, int x2, int y2) {
+		return Math.Abs (x1 - x2) + Math.Abs (y1 - y2);
+	}
+
 	void AIMove() {
 		Debug.Log ("AI Move Initiated");
 		foreach (KeyValuePair<string, GameObject> pollutionObject in currentStage.pollutions) {
 			Debug.Log ("Pollution: " + pollutionObject.Key);
 			string bestPosition = "";
+			string backupPosition = "";
 			foreach (KeyValuePair<string, int> plantLocation in plantPositions) {
 				Debug.Log ("Plant: " + plantLocation.Key);
 				int plantX = int.Parse(plantLocation.Key [0].ToString());
@@ -254,9 +259,26 @@ public class LevelManager : MonoBehaviour {
 					GameObject rightChar = getCharacterAtGridPosition (plantX + 1, plantY);
 
 					if (leftChar == null) {
+						if (backupPosition == "") {
+							backupPosition = (plantX - 1).ToString () + plantY.ToString ();
+						} else if (
+							calcDistance(
+							int.Parse(pollutionObject.Key[0].ToString()), 
+							int.Parse(pollutionObject.Key[1].ToString()), 
+							int.Parse(backupPosition[0].ToString()), 
+							int.Parse(backupPosition[1].ToString())) < 
+							calcDistance(
+							int.Parse(pollutionObject.Key[0].ToString()), 
+							int.Parse(pollutionObject.Key[1].ToString()),
+							plantX - 1,
+							plantY))
+						{
+							backupPosition = (plantX - 1).ToString () + plantY.ToString ();
+						}
+
 						// Look to Right
 						if (rightChar != null && rightChar.tag == "Pollution") {
-							bestPosition = (plantX + 1).ToString () + plantY.ToString ();
+							bestPosition = (plantX - 1).ToString () + plantY.ToString ();
 							break;
 						} else if (rightChar != null && rightChar.tag == "Plant") {
 							int i = 2;
@@ -266,7 +288,7 @@ public class LevelManager : MonoBehaviour {
 									rightChar = getCharacterAtGridPosition (plantX + i, plantY);
 
 									if (rightChar != null && rightChar.tag == "Pollution") {
-										bestPosition = (plantX + 1).ToString () + plantY.ToString ();
+										bestPosition = (plantX - 1).ToString () + plantY.ToString ();
 										break;
 									} else if (rightChar == null) {
 										done = true;
@@ -278,6 +300,23 @@ public class LevelManager : MonoBehaviour {
 							} while (!done);
 						}
 					} else if (rightChar == null) {
+						if (backupPosition == "") {
+							backupPosition = (plantX + 1).ToString () + plantY.ToString ();
+						} else if (
+							calcDistance(
+								int.Parse(pollutionObject.Key[0].ToString()), 
+								int.Parse(pollutionObject.Key[1].ToString()), 
+								int.Parse(backupPosition[0].ToString()), 
+								int.Parse(backupPosition[1].ToString())) < 
+							calcDistance(
+								int.Parse(pollutionObject.Key[0].ToString()), 
+								int.Parse(pollutionObject.Key[1].ToString()),
+								plantX + 1,
+								plantY))
+						{
+							backupPosition = (plantX + 1).ToString () + plantY.ToString ();
+						}
+
 						// Look to Left
 						if (leftChar != null && leftChar.tag == "Pollution") {
 							bestPosition = (plantX + 1).ToString () + plantY.ToString ();
@@ -290,7 +329,7 @@ public class LevelManager : MonoBehaviour {
 									leftChar = getCharacterAtGridPosition (plantX - i, plantY);
 
 									if (leftChar != null && leftChar.tag == "Pollution") {
-										bestPosition = (plantX - 1).ToString () + plantY.ToString ();
+										bestPosition = (plantX + 1).ToString () + plantY.ToString ();
 										break;
 									} else if (leftChar == null) {
 										done = true;
@@ -310,6 +349,23 @@ public class LevelManager : MonoBehaviour {
 					GameObject bottomChar = getCharacterAtGridPosition (plantX, plantY + 1);
 
 					if (topChar == null) {
+						if (backupPosition == "") {
+							backupPosition = plantX.ToString () + (plantY - 1).ToString ();
+						} else if (
+							calcDistance(
+								int.Parse(pollutionObject.Key[0].ToString()), 
+								int.Parse(pollutionObject.Key[1].ToString()), 
+								int.Parse(backupPosition[0].ToString()), 
+								int.Parse(backupPosition[1].ToString())) < 
+							calcDistance(
+								int.Parse(pollutionObject.Key[0].ToString()), 
+								int.Parse(pollutionObject.Key[1].ToString()),
+								plantX,
+								plantY - 1))
+						{
+							backupPosition = plantX.ToString () + (plantY - 1).ToString ();
+						}
+
 						// Look to Down
 						if (bottomChar != null && bottomChar.tag == "Pollution") {
 							bestPosition = plantX.ToString () + (plantY - 1).ToString ();
@@ -334,6 +390,23 @@ public class LevelManager : MonoBehaviour {
 							} while (!done);
 						}
 					} else if (bottomChar == null) {
+						if (backupPosition == "") {
+							backupPosition = plantX.ToString () + (plantY + 1).ToString ();
+						} else if (
+							calcDistance(
+								int.Parse(pollutionObject.Key[0].ToString()), 
+								int.Parse(pollutionObject.Key[1].ToString()), 
+								int.Parse(backupPosition[0].ToString()), 
+								int.Parse(backupPosition[1].ToString())) < 
+							calcDistance(
+								int.Parse(pollutionObject.Key[0].ToString()), 
+								int.Parse(pollutionObject.Key[1].ToString()),
+								plantX,
+								plantY + 1))
+						{
+							backupPosition = plantX.ToString () + (plantY + 1).ToString ();
+						}
+
 						// Look to Up
 						if (topChar != null && topChar.tag == "Pollution") {
 							bestPosition = plantX.ToString () + (plantY + 1).ToString ();
@@ -361,6 +434,9 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 			Debug.Log ("Best Position: " + bestPosition);
+			if (bestPosition == "") {
+				bestPosition = backupPosition;
+			}
 		}
 	}
 
