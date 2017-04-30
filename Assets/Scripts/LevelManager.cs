@@ -36,6 +36,7 @@ public class LevelManager : MonoBehaviour {
 		plantPositions = new Dictionary<string, int> ();
 		foreach (Position plantPos in plantStartingPositions) {
 			GameObject targetGrid = GameObject.Find ("grid_tile_" + plantPos.key);
+			Debug.Log ("grid_tile_" + plantPos.key);
 			GameObject plant = gameManager.plants [plantPos.value];
 			Plant plantScr = (Plant)plant.GetComponent (typeof(Plant));
 			plant.SetActive (true);
@@ -44,9 +45,11 @@ public class LevelManager : MonoBehaviour {
 			plantScr.x = int.Parse (plantPos.key [0].ToString ());
 			plantScr.y = int.Parse (plantPos.key [1].ToString ());
 		}
+
 	}
 
 	void Start() {
+
 		InitLevel ();
 	}
 
@@ -85,8 +88,11 @@ public class LevelManager : MonoBehaviour {
 			int plantIndex = this.plantPositions [fromKey];
 			this.plantPositions.Remove (fromKey);
 			this.plantPositions.Add (toKey, plantIndex);
+
+
 			plant.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
 			Plant plantScr = (Plant)plant.GetComponent (typeof(Plant));
+			//plantScr.LerpTo (GameObject.Find ("grid_tile_" + toKey).transform.position);
 			plantScr.x = toGridX;
 			plantScr.y = toGridY;
 		}
