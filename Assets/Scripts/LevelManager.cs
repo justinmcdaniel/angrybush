@@ -97,7 +97,7 @@ public class LevelManager : MonoBehaviour {
 			mouseGridController.mouseUp();
 		}
 		isPlayerTurn = false;
-		turn ();
+		PlayerCombat ();
 	}
 
 	public GameObject getCharacterAtGridPosition (int gridX, int gridY) {
@@ -282,6 +282,7 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 		}
+		AIMove ();
 	}
 
 	public void AiCombat() {
@@ -357,8 +358,8 @@ public class LevelManager : MonoBehaviour {
 			}
 
 			if (plant.isDead) {
-				plantPositions.Remove (plantPosition.Key);
 				plants [plantPosition.Value].SetActive(false);
+				plantPositions.Remove (plantPosition.Key);
 
 				if (plantPositions.Count == 0) {
 					levelLose ();
@@ -593,22 +594,28 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 			if (bestPosition == "") {
-				bestPosition = backupPosition;
+				if (backupPosition == "") {
+					bestPosition = pollutionObject.Key;
+				} else {
+					bestPosition = backupPosition;
+				}
 			}
 
 			movePollutionToPosition_Freely (pollutionObject.Value, int.Parse (pollutionObject.Key [0].ToString ()), int.Parse (pollutionObject.Key [1].ToString ()), int.Parse (bestPosition [0].ToString ()), int.Parse (bestPosition [1].ToString ()));
 		}
+		AiCombat ();
 	}
 
 	void levelWin () {
 		foreach (GameObject plantObject in gameManager.plants) {
 			plantObject.SetActive (false);
 		}
-		SceneManager.LoadScene("LevelWin");
+		SceneManager.LoadScene ("LevelWin");
+		Debug.Log ("Win");
 	}
 
 	void levelLose () {
-		SceneManager.LoadScene ("LevelLose");
+		SceneManager.LoadScene("LevelLose");
 	}
 
 	void turn () {
@@ -617,12 +624,12 @@ public class LevelManager : MonoBehaviour {
 
 	IEnumerator seqTurn() {
 		PlayerCombat ();
-		yield return new WaitForSeconds(1F);
+		yield return new WaitForSeconds(2F);
 
 		AIMove ();
 		yield return new WaitForSeconds(1F);
 
 		AiCombat ();
-		yield return new WaitForSeconds(1F);
+		yield return new WaitForSeconds(2F);
 	}
 }
