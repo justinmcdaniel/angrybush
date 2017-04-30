@@ -36,7 +36,7 @@ public class Stage : MonoBehaviour {
 	}
 
 	public bool isStageWin() {
-		if (pollutions.Count () == 0) {
+		if (pollutions.Count == 0) {
 			return true;
 		} else {
 			return false;

@@ -202,7 +202,7 @@ public class LevelManager : MonoBehaviour {
 		if (currentStage.isStageWin ()) {
 			currentStage.enabled = false;
 			currentStageIndex += 1;
-			if (currentStageIndex > stages.Length ()) {
+			if (currentStageIndex > stages.Length) {
 				levelWin ();
 			} else {
 				currentStage = stages [currentStageIndex];
