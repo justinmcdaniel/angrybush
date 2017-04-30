@@ -911,6 +911,7 @@ MonoBehaviour:
   stages:
   - {fileID: 748615443}
   currentStage: {fileID: 748615443}
+  turnLength_Seconds: 3
   plantStartingPositions:
   - key: 33
     value: 0
@@ -2754,7 +2755,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 281642890}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
