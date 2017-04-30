@@ -121,7 +121,6 @@ public class Plant : MonoBehaviour {
 
 		isDamaged = true;
 
-		Debug.Log ("Damage: " + damage);
 		currentHealth -= damage;
 
 		InitPopupText (damage.ToString());
@@ -142,7 +141,7 @@ public class Plant : MonoBehaviour {
 	void Death() {
 		isDead = true;
 
-		anim.SetTrigger ("Die");
+		//anim.SetTrigger ("Die");
 
 		//playerAudio.clip = deathClip;
 		//playerAudio.Play ();
