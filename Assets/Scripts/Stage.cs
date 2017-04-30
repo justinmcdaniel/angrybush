@@ -6,6 +6,8 @@ public class Stage : MonoBehaviour {
 
 	public bool activeStage;
 
+	public bool stageComplete;
+
 	public Dictionary <string, GameObject> pollutions;
 
 	[Serializable]
@@ -18,6 +20,7 @@ public class Stage : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		stageComplete = false;
 		
 		pollutions = new Dictionary<string, GameObject> () { };
 
@@ -32,14 +35,6 @@ public class Stage : MonoBehaviour {
 
 			pollutions.Add(pollutionAndPosition.key, pollutionAndPosition.value);
 
-		}
-	}
-
-	public bool isStageWin() {
-		if (pollutions.Count == 0) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 }
