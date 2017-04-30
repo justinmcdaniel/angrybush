@@ -25,13 +25,18 @@ public class Plant : MonoBehaviour {
 	Animator anim;
 	//AudioSource playerAudio;
 
-	bool isDead;
+	public bool isDead;
 	bool isDamaged;
 
 	GameObject globalStats;
 	Stats stats;
 
 	Skill skill;
+
+	Image healthBar;
+	Image healthBarBackground;
+
+	public GameObject popupText;
 
 	// Use this for initialization
 	void Awake () {
@@ -41,6 +46,11 @@ public class Plant : MonoBehaviour {
 		currentHealth = health;
 
 		skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
+
+		healthBar = transform.FindChild ("PollutionCanvas").FindChild ("HealthBar").FindChild ("Health").GetComponent<Image> ();
+		healthBarBackground = transform.FindChild ("PollutionCanvas").FindChild ("HealthBar").GetComponent<Image> ();
+		healthBar.enabled = false;
+		healthBarBackground.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -54,6 +64,19 @@ public class Plant : MonoBehaviour {
 		isDamaged = false;
 	}
 	*/
+
+	void InitPopupText (string damage) {
+		GameObject temp = Instantiate (popupText) as GameObject;
+		temp.SetActive (true);
+		RectTransform tempRect = temp.GetComponent<RectTransform> ();
+		temp.transform.SetParent (transform.FindChild ("PlantCanvas"));
+		tempRect.transform.localPosition = popupText.transform.localPosition;
+		tempRect.transform.localScale = popupText.transform.localScale;
+
+		((Text) temp.GetComponent(typeof(Text))).text = damage;
+		((Animator)temp.GetComponent (typeof(Animator))).SetTrigger ("Damage");
+		Destroy (temp.gameObject, 2);
+	}
 
 	public int DoDamage () {
 
@@ -74,16 +97,22 @@ public class Plant : MonoBehaviour {
 
 	public void TakeDamage (int amount, Enumerations.DamageType damageType) {
 		int damage = 0;
-		if (skill.damageType == Enumerations.DamageType.Magic) {
+		if (damageType == Enumerations.DamageType.Magic) {
 			damage = amount * (stats.baseMagicDefense / magicDefense);
 		}
-		else if (skill.damageType == Enumerations.DamageType.Physical) {
+		else if (damageType == Enumerations.DamageType.Physical) {
 			damage = amount * (stats.baseDefence / defense);
 		}
 
 		isDamaged = true;
 
 		currentHealth -= damage;
+
+		InitPopupText (damage.ToString());
+
+		healthBar.fillAmount = (float)currentHealth / (float)health;
+		healthBar.enabled = true;
+		healthBarBackground.enabled = true;
 
 		//healthSlider.value = currentHealth;
 

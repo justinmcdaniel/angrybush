@@ -78,7 +78,7 @@ public class MouseGridController : MonoBehaviour {
 		this.mouseIsDown = false;
 		this.currentCharacter = null;
 		this.isBlocked = false;
-		levelManager.Combat ();
+		levelManager.PlayerCombat ();
 		//todo: call character drop code here
 	}
 
