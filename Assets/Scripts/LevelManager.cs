@@ -92,11 +92,10 @@ public class LevelManager : MonoBehaviour {
 			int plantIndex = this.plantPositions [fromKey];
 			this.plantPositions.Remove (fromKey);
 			this.plantPositions.Add (toKey, plantIndex);
-
-
-			plant.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
 			Plant plantScr = (Plant)plant.GetComponent (typeof(Plant));
-			//plantScr.LerpTo (GameObject.Find ("grid_tile_" + toKey).transform.position);
+			GameObject toGridTile = GameObject.Find ("grid_tile_" + toKey);
+			//plant.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
+			plantScr.LerpTo (toGridTile.transform.position.x, toGridTile.transform.position.y);
 			plantScr.x = toGridX;
 			plantScr.y = toGridY;
 		}
@@ -130,12 +129,14 @@ public class LevelManager : MonoBehaviour {
 			this.plantPositions.Remove (toKey);
 			this.plantPositions.Add (toKey, plantIndex_From);
 			this.plantPositions.Add (fromKey, plantIndex_To);
-			toCharacter.transform.position = fromGridTile.transform.position;
-			plant.transform.position = toGridTile.transform.position;
 			Plant plantScr = (Plant)plant.GetComponent (typeof(Plant));
+			plantScr.LerpTo (toGridTile.transform.position.x, toGridTile.transform.position.y);
+			//plant.transform.position = toGridTile.transform.position;
 			plantScr.x = toGridX;
 			plantScr.y = toGridY;
 			Plant toCharScr = (Plant)toCharacter.GetComponent (typeof(Plant));
+			//toCharacter.transform.position = fromGridTile.transform.position;
+			toCharScr.LerpTo (fromGridTile.transform.position.x, fromGridTile.transform.position.y);
 			toCharScr.x = fromGridX;
 			toCharScr.y = fromGridY;
 
