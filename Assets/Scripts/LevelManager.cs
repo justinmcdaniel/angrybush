@@ -9,9 +9,11 @@ public class LevelManager : MonoBehaviour {
 	public Stage[] stages;
 	int currentStageIndex = 0;
 	public Stage currentStage;
+	public int turnLength_Seconds = 3;
 
 	public Dictionary <string, int> plantPositions;
 	GameManager gameManager;
+	MouseGridController mouseGridController;
 		
 	[Serializable]
 	public struct Position {
@@ -27,6 +29,7 @@ public class LevelManager : MonoBehaviour {
 	void Awake () {
 
 		gameManager = (GameManager)GameObject.Find ("GameManager").GetComponent (typeof(GameManager));
+		mouseGridController = (MouseGridController)gameObject.GetComponent (typeof(MouseGridController));
 
 		foreach (GameObject canvasObjects in GameObject.FindGameObjectsWithTag("Finish")) {
 			canvasObjects.GetComponent<Canvas> ().worldCamera = Camera.main;
@@ -65,7 +68,35 @@ public class LevelManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (isPlayerTurn && playerHasStartedTurn) {
+			if (DateTime.Now > turnStartTime.AddSeconds (turnLength_Seconds)) {
+				playerMoveEnd (true);
+			}
+		}
+	}
 
+	private bool isPlayerTurn = true;
+	private bool playerHasStartedTurn = false;
+	public bool IsPlayerTurn { get { return isPlayerTurn; } }
+	private DateTime turnStartTime;
+
+	public void startPlayerTurn() {
+		isPlayerTurn = true;
+		playerHasStartedTurn = false;
+	}
+
+	public void playerMoveStart() {
+		playerHasStartedTurn = true;
+		turnStartTime = DateTime.Now;
+	}
+
+	public void playerMoveEnd(bool timedOut) {
+		Debug.Log ("Player turn end.");
+		if (timedOut) {
+			mouseGridController.mouseUp();
+		}
+		isPlayerTurn = false;
+		PlayerCombat ();
 	}
 
 	public GameObject getCharacterAtGridPosition (int gridX, int gridY) {
@@ -155,7 +186,7 @@ public class LevelManager : MonoBehaviour {
 			return Enumerations.MoveType.None;
 		} else if (targetCharacter == null) {
 			return Enumerations.MoveType.Free;
-		} else if (targetCharacter.tag == targetCharacter.tag) {
+		} else if (sourceCharacter.tag == targetCharacter.tag) {
 			return Enumerations.MoveType.Swap;
 		} else {
 			return Enumerations.MoveType.Blocked;
@@ -339,6 +370,7 @@ public class LevelManager : MonoBehaviour {
 			}
 		}
 
+		startPlayerTurn ();
 		//System.Threading.Thread.Sleep (1000);
 	}
 
