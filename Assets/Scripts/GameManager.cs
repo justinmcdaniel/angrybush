@@ -23,10 +23,6 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	public void gotoDebugGrid() {
-		SceneManager.LoadScene ("Grid");
-	}
-
 	public void gotoDebugCombat() {
 		SceneManager.LoadScene ("Combat");
 	}

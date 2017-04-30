@@ -16,7 +16,6 @@ public class Pollution : MonoBehaviour {
 	public int y;
 
 	public int currentHealth;
-	public Slider healthSlider;
 	public Image damageImage;
 	//public AudioClip deathClip;
 	public float flashSpeed = 5f;
@@ -33,6 +32,11 @@ public class Pollution : MonoBehaviour {
 
 	Skill skill;
 
+	Image healthBar;
+	Image healthBarBackground;
+
+	public GameObject popupText;
+
 	// Use this for initialization
 	void Awake () {
 		globalStats = GameObject.Find ("globalStats");
@@ -41,6 +45,12 @@ public class Pollution : MonoBehaviour {
 		currentHealth = health;
 
 		skill = ((Skill)gameObject.GetComponent (typeof(Skill)));
+
+		healthBar = transform.FindChild ("PollutionCanvas").FindChild ("HealthBar").FindChild ("Health").GetComponent<Image> ();
+		healthBarBackground = transform.FindChild ("PollutionCanvas").FindChild ("HealthBar").GetComponent<Image> ();
+		healthBar.enabled = false;
+		healthBarBackground.enabled = false;
+
 	}
 
 	// Update is called once per frame
@@ -55,6 +65,19 @@ public class Pollution : MonoBehaviour {
 	}
 	*/
 
+	void InitPopupText (string damage) {
+		GameObject temp = Instantiate (popupText) as GameObject;
+		temp.SetActive (true);
+		RectTransform tempRect = temp.GetComponent<RectTransform> ();
+		temp.transform.SetParent (transform.FindChild ("PollutionCanvas"));
+		tempRect.transform.localPosition = popupText.transform.localPosition;
+		tempRect.transform.localScale = popupText.transform.localScale;
+
+		((Text) temp.GetComponent(typeof(Text))).text = damage;
+		((Animator)temp.GetComponent (typeof(Animator))).SetTrigger ("Damage");
+		Destroy (temp.gameObject, 2);
+	}
+
 	public void TakeDamage (int amount, Enumerations.DamageType damageType) {
 		int damage = 0;
 		if (damageType == Enumerations.DamageType.Magic) {
@@ -67,6 +90,12 @@ public class Pollution : MonoBehaviour {
 		isDamaged = true;
 
 		currentHealth -= damage;
+
+		InitPopupText (damage.ToString());
+
+		healthBar.fillAmount = (float)currentHealth / (float)health;
+		healthBar.enabled = true;
+		healthBarBackground.enabled = true;
 
 		//healthSlider.value = currentHealth;
 
