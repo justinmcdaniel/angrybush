@@ -36,9 +36,12 @@ public class LevelManager : MonoBehaviour {
 		foreach (Position plantPos in plantStartingPositions) {
 			GameObject targetGrid = GameObject.Find ("grid_tile_" + plantPos.key);
 			GameObject plant = gameManager.plants [plantPos.value];
+			Plant plantScr = (Plant)plant.GetComponent (typeof(Plant));
 			plant.SetActive (true);
 			plant.transform.position = targetGrid.transform.position;
 			plantPositions.Add (plantPos.key, plantPos.value);
+			plantScr.x = int.Parse (plantPos.key [0].ToString ());
+			plantScr.y = int.Parse (plantPos.key [1].ToString ());
 		}
 	}
 
