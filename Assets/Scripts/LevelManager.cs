@@ -28,7 +28,7 @@ public class LevelManager : MonoBehaviour {
 		gameManager = (GameManager)GameObject.Find ("GameManager").GetComponent (typeof(GameManager));
 
 		//Assumes gameObject is "Main Camera"
-		stages = gameObject.GetComponents<Stage>();
+		//stages = gameObject.GetComponents<Stage>();
 		currentStage = stages [currentStageIndex];
 
 
