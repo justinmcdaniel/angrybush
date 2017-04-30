@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -96,7 +97,7 @@ public class LevelManager : MonoBehaviour {
 			mouseGridController.mouseUp();
 		}
 		isPlayerTurn = false;
-		PlayerCombat ();
+		turn ();
 	}
 
 	public GameObject getCharacterAtGridPosition (int gridX, int gridY) {
@@ -281,10 +282,6 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 		}
-
-		//System.Threading.Thread.Sleep (1000);
-
-		AIMove ();
 	}
 
 	public void AiCombat() {
@@ -601,17 +598,31 @@ public class LevelManager : MonoBehaviour {
 
 			movePollutionToPosition_Freely (pollutionObject.Value, int.Parse (pollutionObject.Key [0].ToString ()), int.Parse (pollutionObject.Key [1].ToString ()), int.Parse (bestPosition [0].ToString ()), int.Parse (bestPosition [1].ToString ()));
 		}
-		AiCombat ();
 	}
 
 	void levelWin () {
 		foreach (GameObject plantObject in gameManager.plants) {
 			plantObject.SetActive (false);
 		}
-		SceneManager.LoadScene ("LevelWin");
+		SceneManager.LoadScene("LevelWin");
 	}
 
 	void levelLose () {
-		SceneManager.LoadScene ("LevelWin");
+		SceneManager.LoadScene ("LevelLose");
+	}
+
+	void turn () {
+		StartCoroutine (seqTurn());
+	}
+
+	IEnumerator seqTurn() {
+		PlayerCombat ();
+		yield return new WaitForSeconds(1F);
+
+		AIMove ();
+		yield return new WaitForSeconds(1F);
+
+		AiCombat ();
+		yield return new WaitForSeconds(1F);
 	}
 }
