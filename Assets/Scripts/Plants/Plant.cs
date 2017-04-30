@@ -54,6 +54,21 @@ public class Plant : MonoBehaviour {
 		isDamaged = false;
 	}
 	*/
+	private Vector3 lerpFromPosition;
+	private Vector3 lerpToPosition;
+	void Update() {
+		if (lerpFromPosition != lerpToPosition) {
+			gameObject.transform.position = Vector3.Lerp (lerpFromPosition, lerpToPosition, flashSpeed * Time.deltaTime);
+		} 
+	}
+
+	public void LerpTo(Vector3 lerpToPosition) {
+		if (lerpToPosition != lerpFromPosition) {
+			gameObject.transform.position = lerpToPosition;
+		}
+		lerpFromPosition = gameObject.transform.position;
+		lerpToPosition = lerpToPosition;
+	}
 
 	public int DoDamage () {
 

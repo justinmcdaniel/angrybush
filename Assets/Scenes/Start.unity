@@ -97,7 +97,6 @@ GameObject:
   - 92: {fileID: 94280429}
   - 124: {fileID: 94280428}
   - 81: {fileID: 94280427}
-  - 114: {fileID: 94280426}
   - 114: {fileID: 94280425}
   m_Layer: 0
   m_Name: Main Camera
@@ -118,25 +117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBlocked: 0
---- !u!114 &94280426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 94280424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3f7d0e99baec491ab9028a3a9944f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stages:
-  - {fileID: 0}
-  currentStage: {fileID: 0}
-  plantStartingPositions:
-  - key: 34
-    value: 0
-  - key: 64
-    value: 1
 --- !u!81 &94280427
 AudioListener:
   m_ObjectHideFlags: 0
@@ -204,6 +184,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!1 &760239263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 110350, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 760239265}
+  - 114: {fileID: 760239264}
+  m_Layer: 0
+  m_Name: globalStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!114 &760239264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11494916, guid: 896f5a8e4e4a73945be4cb569c7594bc,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760239263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f5a9627d8923e4d9192fced7dcf504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 100
+  baseStrength: 1
+  baseDefence: 1
+  baseMagic: 1
+  baseMagicDefense: 1
+--- !u!4 &760239265
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 473304, guid: 896f5a8e4e4a73945be4cb569c7594bc, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760239263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &767096676
 GameObject:
   m_ObjectHideFlags: 0
