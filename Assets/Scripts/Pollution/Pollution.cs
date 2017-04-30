@@ -85,5 +85,6 @@ public class Pollution : MonoBehaviour {
 		//playerAudio.clip = deathClip;
 		//playerAudio.Play ();
 		Object.Destroy(gameObject);
+		((LevelManager)GameObject.Find ("Main Camera").GetComponent (typeof(LevelManager))).currentStage.pollutions.Remove (x.ToString () + y.ToString ());
 	}
 }
