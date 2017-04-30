@@ -154,6 +154,8 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 		}
+
+		AIMove ();
 	}
 
 	void PlayerMove() {
@@ -177,7 +179,36 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void AIMove() {
+		foreach (KeyValuePair<string, GameObject> pollutionObject in currentStage.pollutions) {
+			string bestPosition = "";
+			foreach (KeyValuePair<string, int> plantLocation in plantPositions) {
+				int plantX = int.Parse(plantLocation.Key [0].ToString());
+				int plantY = int.Parse(plantLocation.Key [1].ToString());
 
+				// getLeftCharacter
+				if ((plantX - 1) >= 0) {
+					GameObject leftChar = getCharacterAtGridPosition (plantX - 1, plantY);
+
+					// Right = Pollution
+					if (leftChar == null && plantX + 1 <= 7) {
+						GameObject rightChar = getCharacterAtGridPosition (plantX + 1, plantY);
+
+						if (rightChar != null && rightChar.tag == "Pollution") {
+							bestPosition = (plantX - 1).ToString() + plantY.ToString ();
+						}
+					}
+
+					// Right = null
+					else if (leftChar.tag == "Pollution" && plantX + 1 <= 7) {
+						GameObject rightChar = getCharacterAtGridPosition (plantX + 1, plantY);
+
+						if (rightChar == null) {
+							bestPosition = (plantX + 1).ToString() + plantY.ToString ();
+						}
+					}
+				}
+			}
+		}
 	}
 
 	bool PlayerWin () {
