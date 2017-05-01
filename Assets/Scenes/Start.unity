@@ -247,7 +247,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804179497}
-        m_MethodName: gotoMenuScene
+        m_MethodName: gotoMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -678,7 +678,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 804179497}
-        m_MethodName: gotoIntroScene
+        m_MethodName: gotoIntro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

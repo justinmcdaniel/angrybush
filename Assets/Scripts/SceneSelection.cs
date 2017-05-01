@@ -4,11 +4,11 @@ using System.Collections;
 
 public class SceneSelection : MonoBehaviour {
 
-	public void gotoIntroScene() {
+	public void gotoIntro() {
 		SceneManager.LoadScene ("Intro");
 	}
 
-	public void gotoMenuScene() {
+	public void gotoMenu() {
 		SceneManager.LoadScene ("MainMenu");
 	}
 
@@ -18,5 +18,9 @@ public class SceneSelection : MonoBehaviour {
 
 	public void gotoCampaign() {
 		SceneManager.LoadScene ("Campaign");
+	}
+
+	public void gotoLevel1Intro() {
+		SceneManager.LoadScene ("Level1Intro");
 	}
 }
