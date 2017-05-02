@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -281,9 +282,6 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 		}
-
-		//System.Threading.Thread.Sleep (1000);
-
 		AIMove ();
 	}
 
@@ -595,7 +593,11 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 			if (bestPosition == "") {
-				bestPosition = backupPosition;
+				if (backupPosition == "") {
+					bestPosition = pollutionObject.Key;
+				} else {
+					bestPosition = backupPosition;
+				}
 			}
 
 			movePollutionToPosition_Freely (pollutionObject.Value, int.Parse (pollutionObject.Key [0].ToString ()), int.Parse (pollutionObject.Key [1].ToString ()), int.Parse (bestPosition [0].ToString ()), int.Parse (bestPosition [1].ToString ()));
@@ -608,9 +610,25 @@ public class LevelManager : MonoBehaviour {
 			plantObject.SetActive (false);
 		}
 		SceneManager.LoadScene ("LevelWin");
+		Debug.Log ("Win");
 	}
 
 	void levelLose () {
-		SceneManager.LoadScene ("LevelWin");
+		SceneManager.LoadScene("LevelLose");
+	}
+
+	void turn () {
+		StartCoroutine (seqTurn());
+	}
+
+	IEnumerator seqTurn() {
+		PlayerCombat ();
+		yield return new WaitForSeconds(2F);
+
+		AIMove ();
+		yield return new WaitForSeconds(1F);
+
+		AiCombat ();
+		yield return new WaitForSeconds(2F);
 	}
 }
