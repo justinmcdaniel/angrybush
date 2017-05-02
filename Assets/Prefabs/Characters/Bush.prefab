@@ -46,13 +46,14 @@ GameObject:
   - 212: {fileID: 21200904}
   - 114: {fileID: 11433422}
   - 114: {fileID: 11467488}
+  - 95: {fileID: 9557760}
   m_Layer: 0
   m_Name: Bush
   m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &135266
 GameObject:
   m_ObjectHideFlags: 1
@@ -101,6 +102,23 @@ Transform:
   - {fileID: 22456438}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!95 &9557760
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122748}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9b9d74ad873fa4e2c9c922de844704ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &9588584
 Animator:
   serializedVersion: 3
@@ -308,7 +326,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -397517121
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5356af057e9154d1781afbc8bcd447a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: adb8efa18d0931e48b5447e19839ea07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
