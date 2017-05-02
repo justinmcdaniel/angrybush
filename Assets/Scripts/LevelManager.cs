@@ -361,7 +361,6 @@ public class LevelManager : MonoBehaviour {
 
 			if (plant.isDead) {
 				plantPositions.Remove (plantPosition.Key);
-				plants [plantPosition.Value].SetActive(false);
 
 				if (plantPositions.Count == 0) {
 					levelLose ();

@@ -74,7 +74,7 @@ public class Pollution : MonoBehaviour {
 		if (isLerping) {
 			if (gameObject.transform.position != lerpToPosition && Vector3.Distance (gameObject.transform.position, lerpToPosition) > 0.001) {
 				Vector3 newPos = Vector3.Lerp (gameObject.transform.position, lerpToPosition, flashSpeed * Time.deltaTime);
-				Debug.Log (newPos);
+//				Debug.Log (newPos);
 				gameObject.transform.position = newPos;
 				//Debug.Log (Vector3.Distance (gameObject.transform.position, lerpToPosition));
 			} else {

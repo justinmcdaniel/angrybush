@@ -36,12 +36,15 @@ public class Plant : MonoBehaviour {
 	Image healthBar;
 	Image healthBarBackground;
 
+	Animator plantAnim;
+
 	public GameObject popupText;
 
 	// Use this for initialization
 	void Awake () {
 		globalStats = GameObject.Find ("globalStats");
 		stats = (Stats)globalStats.GetComponent (typeof(Stats));
+		plantAnim = (Animator)gameObject.GetComponent (typeof(Animator));
 
 		currentHealth = health;
 
@@ -146,13 +149,17 @@ public class Plant : MonoBehaviour {
 		//Play damage audio
 
 		if (currentHealth <= 0 && !isDead) {
-			Death ();
+			StartCoroutine(Death());
 		}
 	}
 
-	void Death() {
+	IEnumerator Death() {
+		
 		isDead = true;
-
+		if (plantAnim != null) {
+			plantAnim.SetBool ("isDead", true);
+		}	
+		yield return new WaitForSeconds (0.778f);
 		gameObject.SetActive (false);
 
 		//anim.SetTrigger ("Die");
