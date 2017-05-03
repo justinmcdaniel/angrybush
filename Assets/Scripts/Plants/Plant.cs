@@ -159,7 +159,7 @@ public class Plant : MonoBehaviour {
 		if (plantAnim != null) {
 			plantAnim.SetBool ("isDead", true);
 		}	
-		yield return new WaitForSeconds (0.778f);
+		yield return new WaitForSeconds (0.7f);
 		gameObject.SetActive (false);
 
 		//anim.SetTrigger ("Die");

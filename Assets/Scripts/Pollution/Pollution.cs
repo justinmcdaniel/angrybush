@@ -41,6 +41,7 @@ public class Pollution : MonoBehaviour {
 	void Awake () {
 		globalStats = GameObject.Find ("globalStats");
 		stats = (Stats)globalStats.GetComponent (typeof(Stats));
+		anim = (Animator)gameObject.GetComponent (typeof(Animator));
 
 		currentHealth = health;
 
@@ -147,12 +148,20 @@ public class Pollution : MonoBehaviour {
 		//Play damage audio
 
 		if (currentHealth <= 0 && !isDead) {
-			Death ();
+			StartCoroutine(Death ());
 		}
 	}
 
-	void Death() {
+	IEnumerator Death() {
 		isDead = true;
+
+		if (anim != null) {
+			anim.SetBool ("isDead", true);
+		}	
+		yield return new WaitForSeconds (0.7f);
+		GameObject.DestroyObject(gameObject);
+
+
 
 		//anim.SetTrigger ("Die");
 

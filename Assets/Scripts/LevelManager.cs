@@ -126,7 +126,6 @@ public class LevelManager : MonoBehaviour {
 			this.plantPositions.Add (toKey, plantIndex);
 			Plant plantScr = (Plant)plant.GetComponent (typeof(Plant));
 			GameObject toGridTile = GameObject.Find ("grid_tile_" + toKey);
-			//plant.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
 			plantScr.LerpTo (toGridTile.transform.position.x, toGridTile.transform.position.y);
 			plantScr.x = toGridX;
 			plantScr.y = toGridY;
@@ -143,7 +142,6 @@ public class LevelManager : MonoBehaviour {
 			currentStage.pollutions.Add (toKey, pollution);
 			Pollution pollutionScr = (Pollution)pollution.GetComponent (typeof(Pollution));
 			GameObject toGridTile = GameObject.Find ("grid_tile_" + toKey);
-			//pollution.transform.position = GameObject.Find ("grid_tile_" + toKey).transform.position;
 			pollutionScr.LerpTo (toGridTile.transform.position.x, toGridTile.transform.position.y);
 			pollutionScr.x = toGridX;
 			pollutionScr.y = toGridY;
@@ -165,11 +163,9 @@ public class LevelManager : MonoBehaviour {
 			this.plantPositions.Add (fromKey, plantIndex_To);
 			Plant plantScr = (Plant)plant.GetComponent (typeof(Plant));
 			plantScr.LerpTo (toGridTile.transform.position.x, toGridTile.transform.position.y);
-			//plant.transform.position = toGridTile.transform.position;
 			plantScr.x = toGridX;
 			plantScr.y = toGridY;
 			Plant toCharScr = (Plant)toCharacter.GetComponent (typeof(Plant));
-			//toCharacter.transform.position = fromGridTile.transform.position;
 			toCharScr.LerpTo (fromGridTile.transform.position.x, fromGridTile.transform.position.y);
 			toCharScr.x = fromGridX;
 			toCharScr.y = fromGridY;
@@ -265,9 +261,8 @@ public class LevelManager : MonoBehaviour {
 				}
 			}
 
-			if (pollution.isDead) {
+			if (pollution == null || pollution.isDead) {
 				currentStage.pollutions.Remove (pollutionObject.Key);
-				GameObject.DestroyObject(pollutionObject.Value);
 
 				if (currentStage.pollutions.Count == 0) {
 					Debug.Log ("done");
@@ -371,19 +366,6 @@ public class LevelManager : MonoBehaviour {
 		//System.Threading.Thread.Sleep (1000);
 	}
 
-	void PlayerMove() {
-		bool end = false;
-		DateTime start = System.DateTime.Now;
-		do {
-			if (System.DateTime.Now - start >= turnTime) {
-				end = true;
-			}
-			// if (Mouse changes from down to up)
-			// end = true;
-
-		} while (end);
-		//updateBoard ();
-	}
 
 	void moveCharacter(GameObject selectedCharacter, int newX, int newY) {
 		//assumes selectedCharacter still has oldX, oldY
@@ -614,6 +596,9 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void levelLose () {
+		foreach (GameObject plantObject in gameManager.plants) {
+			plantObject.SetActive (false);
+		}
 		SceneManager.LoadScene("LevelLose");
 	}
 
